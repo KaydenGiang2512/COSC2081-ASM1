@@ -111,6 +111,7 @@ public class Data{
         return result;
     }
 
+
     public static Data create_1(){
         Scanner sc = new Scanner(System.in);
         System.out.print("Continent: ");
@@ -127,9 +128,70 @@ public class Data{
     public void display(){
         System.out.printf("Continent: %s, Country: %s, From %s to %s \n", continent,country,date,stop_date);
     }
+
+    public void display_2(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Display weeks (Press 1) or days (Press 2): ");
+        int choice = sc.nextInt();
+        int days = add_row_1().size() / 2;
+        if (choice == 1){
+            if (days >= 7 && days % 7 == 0){
+                System.out.printf("Continent: %s, Country: %s, %d weeks from %s \n", continent,country,days/7,date);
+            }
+            else if (days >= 7 && add_row_1().size() % 7 != 0){
+                System.out.printf("Continent: %s, Country: %s, %d weeks %d from %s \n", continent, country, days/7, days % 7,date);
+            }
+            else {
+                System.out.printf("Continent: %s, Country: %s, %d days from %s \n", continent,country,7-(days % 7),date);
+            }
+        } else if (choice == 2){
+            System.out.printf("Continent: %s, Country: %s, %d days from %s \n", continent,country,7-(days % 7),date);
+        } else {
+            System.out.println("Error");
+        }
+    }
+
+    public void display_3() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Display weeks (Press 1) or days (Press 2): ");
+        int choice = sc.nextInt();
+        int days = add_row_1().size()/2;
+        if (choice == 1) {
+            if (days >= 7 && add_row_1().size() % 7 == 0) {
+                System.out.printf("Continent: %s, Country: %s, %d weeks to %s \n", continent, country, days/7, stop_date);
+            }
+            else if (days >= 7 && add_row_1().size() % 7 != 0){
+                System.out.printf("Continent: %s, Country: %s, %d weeks %d to %s \n", continent, country, days/7, days % 7,stop_date);
+            }
+            else {
+                System.out.printf("Continent: %s, Country: %s, %d days from %s \n", continent, country, 7-(days % 7), stop_date);
+            }
+        } else if (choice == 2) {
+            System.out.printf("Continent: %s, Country: %s, %d days from %s \n", continent, country, 7-(days % 7), stop_date);
+        } else {
+            System.out.println("Error");
+        }
+    }
     public static void main(String[] args) {
         Data d1 = create_1();
-        d1.display();
-        System.out.println(d1.add_row_1());
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Choose display: From date to date (1), Days/Weeks from date (2), Days/Weeks to date (3): ");
+        int choice = sc.nextInt();
+        if (choice == 1) {
+            System.out.println(d1.add_row_1());
+            d1.display();
         }
+        else if (choice == 2) {
+            d1.display_2();
+            System.out.println(d1.add_row_1());
+
+        }
+        else if (choice == 3){
+            d1.display_3();
+            System.out.println(d1.add_row_1());
+        }
+        else {
+            System.out.println("Error");
+        }
+    }
 }
