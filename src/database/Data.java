@@ -19,22 +19,7 @@ public class Data{
         this.stop_date = stop_date;
     }
 
-    public ArrayList<String> get_all_rows() {
-        ArrayList<String> rows = new ArrayList<>();
-        try {
-            FileReader reader = new FileReader(file_name);
-            Scanner sc = new Scanner(reader);
-            while (sc.hasNextLine()) {
-                String row = sc.nextLine();
-                if (row.isEmpty()) continue;
-                rows.add(row);
 
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return rows;
-    }
 //    public String[] get_column(int column_idx) {
 //        String[] list_date = new String[get_all_rows().size()];
 //        list_date = get_all_rows().toArray(list_date);
@@ -101,11 +86,12 @@ public class Data{
     }
 
     public ArrayList<String> add_row_1(){
-        int from_idx = get_all_rows().indexOf(get_start_row());
-        int idx = get_all_rows().indexOf(get_stop_row());
+        readCSV r = new readCSV();
+        int from_idx = r.get_all_rows().indexOf(get_start_row());
+        int idx = r.get_all_rows().indexOf(get_stop_row());
         ArrayList<String> result = new ArrayList<>();
         for(int i = from_idx; i <= idx;i++){
-            result.add(get_all_rows().get(i));
+            result.add(r.get_all_rows().get(i));
             result.add("\n");
         }
         return result;
@@ -138,14 +124,14 @@ public class Data{
             if (days >= 7 && days % 7 == 0){
                 System.out.printf("Continent: %s, Country: %s, %d weeks from %s \n", continent,country,days/7,date);
             }
-            else if (days >= 7 && add_row_1().size() % 7 != 0){
+            else if (days >= 7 && days % 7 != 0){
                 System.out.printf("Continent: %s, Country: %s, %d weeks %d from %s \n", continent, country, days/7, days % 7,date);
             }
             else {
-                System.out.printf("Continent: %s, Country: %s, %d days from %s \n", continent,country,7-(days % 7),date);
+                System.out.printf("Continent: %s, Country: %s, %d days from %s \n", continent,country,(days % 7),date);
             }
         } else if (choice == 2){
-            System.out.printf("Continent: %s, Country: %s, %d days from %s \n", continent,country,7-(days % 7),date);
+            System.out.printf("Continent: %s, Country: %s, %d days from %s \n", continent,country,days,date);
         } else {
             System.out.println("Error");
         }
@@ -157,17 +143,17 @@ public class Data{
         int choice = sc.nextInt();
         int days = add_row_1().size()/2;
         if (choice == 1) {
-            if (days >= 7 && add_row_1().size() % 7 == 0) {
+            if (days >= 7 && days % 7 == 0) {
                 System.out.printf("Continent: %s, Country: %s, %d weeks to %s \n", continent, country, days/7, stop_date);
             }
-            else if (days >= 7 && add_row_1().size() % 7 != 0){
+            else if (days >= 7 && days % 7 != 0){
                 System.out.printf("Continent: %s, Country: %s, %d weeks %d to %s \n", continent, country, days/7, days % 7,stop_date);
             }
             else {
-                System.out.printf("Continent: %s, Country: %s, %d days from %s \n", continent, country, 7-(days % 7), stop_date);
+                System.out.printf("Continent: %s, Country: %s, %d days from %s \n", continent, country,(days % 7), stop_date);
             }
         } else if (choice == 2) {
-            System.out.printf("Continent: %s, Country: %s, %d days from %s \n", continent, country, 7-(days % 7), stop_date);
+            System.out.printf("Continent: %s, Country: %s, %d days from %s \n", continent, country, (days), stop_date);
         } else {
             System.out.println("Error");
         }
@@ -195,3 +181,4 @@ public class Data{
         }
     }
 }
+
