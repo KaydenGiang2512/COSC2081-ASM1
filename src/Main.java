@@ -1,60 +1,91 @@
 import java.util.*;
-import java.io.*;
 
 public class Main {
-    public static void main (String[] args) {
-        CSV read = new CSV("src\\covid-data.csv");
-        read.readCSV();
-    }
-}
+    public static void main(String[] args) {
+        // While loop to keep the program running forever, unless the user wants to end the program by selecting 0
+        while (true) {
+            // Welcome screen with a simple design prompting the user to choose their desirable time range selection method
+            System.out.println("\n******************************************************");
+            System.out.println("Welcome to Group 15's COVID Pandemic Analysis program!");
+            System.out.println("******************************************************\n");
+            System.out.println("There are 3 different methods to select your time range:");
+            System.out.println("1. A pair of start date & end date (inclusive) (e.g., 1/1/2021 and 8/1/2021");
+            System.out.println("2. A number of days or weeks from a particular date " +
+                    "(e.g., 2 days from 1/20/2021 means there are 3 days 1/20/2021, 1/21/2021, and 1/22/2021)");
+            System.out.println("3. A number of days or weeks to a particular date " +
+                    "(e.g., 1 week to 1/8/2021 means there are 8 days from 1/1/2021 to 1/8/2021)");
+            System.out.println("0. The user wants to stop the program from running\n");
+            //Initialize a new scanner to receive input from the user
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Please select an option 1-3: ");
+            int data_choice = sc.nextInt();
 
-class CSV {
-    String file_name;
-    String line = "";
-    int i = 0;  //For checking the total number of lines scanned
+            //Creating a switch case to handle different user input possibilities
+            switch (data_choice) {
+                case 0 -> {
+                    boolean isRunning = false;
+                    System.out.print("Do you want to run this program again? 1 (yes), 2 (no): ");
+                    int option = sc.nextInt();
+                    while (!isRunning) {
+                        if (option == 1) {
+                            isRunning = true;
+                        }
+                        else if (option == 2) {
+                            System.out.println("Exiting program...");
+                            System.exit(0);
+                        } else {
+                            System.out.print("Invalid selection! Please select between 1 (yes), 2 (no): ");
+                            option = sc.nextInt();
+                            if (option == 1) {
+                                isRunning = true;
+                            }
+                            else if (option == 2) {
+                                System.exit(0);
+                            }
+                        }
+                    }
+                }
+                case 1 -> {
+                    Data d1 = Data.create_1();
+                    System.out.println("*******************************************************************");
+                    d1.display_1();
+                    System.out.println(d1.add_row());
+                }
+                case 2 -> {
+                    Data d2 = Data.create_2();
+                    System.out.println("*******************************************************************");
+                    d2.display_2();
+                    System.out.println(d2.add_row());
+                }
+                case 3 -> {
+                    Data d3 = Data.create_3();
+                    System.out.println("****************************************************************");
+                    d3.display_3();
+                    System.out.println(d3.add_row());
+                }
+                default -> {
+                    System.out.println("******************************");
+                    System.out.print("Invalid selection! Please select an option 1-3: ");
+                    data_choice = sc.nextInt();
 
-    public CSV(String file){
-        file_name = file;
-    }
-
-    // Initializing the Scanner and the BufferedReader to null
-    Scanner sc = null;
-    BufferedReader reader = null;
-
-    public void readCSV() {
-        try {
-
-            //Creating the new Scanner and BufferedReader
-            reader = new BufferedReader(new FileReader(file_name)); // read file csv
-            sc = new Scanner(reader);
-
-            //While loop to scan through each line in the file and print them out
-            while (sc.hasNextLine()) {
-                line = sc.nextLine();
-                System.out.println(line);
-                i++;  //incrementing the number of lines by 1 until the loop is done
+                    if (data_choice == 1) {
+                        Data d1 = Data.create_1();
+                        System.out.println("******************************");
+                        d1.display_1();
+                        System.out.println(d1.add_row());
+                    } else if (data_choice == 2) {
+                        Data d2 = Data.create_2();
+                        System.out.println("*******************************************************************");
+                        d2.display_2();
+                        System.out.println(d2.add_row());
+                    } else if (data_choice == 3) {
+                        Data d3 = Data.create_3();
+                        System.out.println("*******************************************************************");
+                        d3.display_3();
+                        System.out.println(d3.add_row());
+                    }
+                }
             }
-
-            //Printing out the total number of lines
-            System.out.println("\nThe total number of lines printed is " + i);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }
-
-//class data extends CSV{
-//    String  country;
-//    String continent;
-//    String date;
-//    public data(String nation, String cont, String time){
-//        country = nation;
-//        continent = cont;
-//        date = time;
-//    }
-//    public void organize_data(){
-//        int count = 0;
-//
-//    }
-//
-//}
