@@ -48,20 +48,23 @@ public class Main {
                 case 1 -> {
                     Data d1 = Data.create_1();
                     System.out.println("*******************************************************************");
+                    assert d1 != null;
                     d1.display_1();
                     System.out.println(d1.add_row());
                 }
                 case 2 -> {
-                    Data d2 = Data.create_2();
+                    Data d2 = Data.create_1();
                     System.out.println("*******************************************************************");
+                    assert d2 != null;
                     d2.display_2();
-                    System.out.println(d2.add_row());
+                    System.out.println(d2.add_row_2());
                 }
                 case 3 -> {
-                    Data d3 = Data.create_3();
+                    Data d3 = Data.create_1();
                     System.out.println("****************************************************************");
+                    assert d3 != null;
                     d3.display_3();
-                    System.out.println(d3.add_row());
+                    System.out.println(d3.add_row_3());
                 }
                 default -> {
                     System.out.println("******************************");
@@ -71,18 +74,21 @@ public class Main {
                     if (data_choice == 1) {
                         Data d1 = Data.create_1();
                         System.out.println("******************************");
+                        assert d1 != null;
                         d1.display_1();
                         System.out.println(d1.add_row());
                     } else if (data_choice == 2) {
-                        Data d2 = Data.create_2();
+                        Data d2 = Data.create_1();
                         System.out.println("*******************************************************************");
+                        assert d2 != null;
                         d2.display_2();
-                        System.out.println(d2.add_row());
+                        System.out.println(d2.add_row_2());
                     } else if (data_choice == 3) {
-                        Data d3 = Data.create_3();
+                        Data d3 = Data.create_1();
                         System.out.println("*******************************************************************");
+                        assert d3 != null;
                         d3.display_3();
-                        System.out.println(d3.add_row());
+                        System.out.println(d3.add_row_3());
                     }
                 }
             }
