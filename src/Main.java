@@ -18,11 +18,11 @@ public class Main {
             //Initialize a new scanner to receive input from the user
             Scanner sc = new Scanner(System.in);
             System.out.print("Please select an option 1-3: ");
-            int data_choice = sc.nextInt();
+            String data_choice = sc.nextLine();
 
             //Creating a switch case to handle different user input possibilities
             switch (data_choice) {
-                case 0 -> {
+                case "0" -> {
                     boolean isRunning = false;
                     System.out.print("Do you want to run this program again? 1 (yes), 2 (no): ");
                     int option = sc.nextInt();
@@ -45,50 +45,50 @@ public class Main {
                         }
                     }
                 }
-                case 1 -> {
+                case "1" -> {
                     Data d1 = Data.create_1();
-                    System.out.println("*******************************************************************");
-                    assert d1 != null;
+                    System.out.println("****************************");
                     d1.display_1();
                     System.out.println(d1.add_row());
                 }
-                case 2 -> {
-                    Data d2 = Data.create_1();
+                case "2" -> {
+                    Data d2 = Data.create_2();
                     System.out.println("*******************************************************************");
-                    assert d2 != null;
                     d2.display_2();
-                    System.out.println(d2.add_row_2());
+                    System.out.println(d2.add_row());
                 }
-                case 3 -> {
-                    Data d3 = Data.create_1();
-                    System.out.println("****************************************************************");
-                    assert d3 != null;
+                case "3" -> {
+                    Data d3 = Data.create_3();
+                    System.out.println("*******************************************************************");
                     d3.display_3();
-                    System.out.println(d3.add_row_3());
+                    System.out.println(d3.add_row());
                 }
                 default -> {
-                    System.out.println("******************************");
-                    System.out.print("Invalid selection! Please select an option 1-3: ");
-                    data_choice = sc.nextInt();
+                    while (true) {
+                        System.out.println("****************************");
+                        System.out.print("Invalid selection! Please select an option 1-3: ");
+                        data_choice = sc.nextLine();
 
-                    if (data_choice == 1) {
-                        Data d1 = Data.create_1();
-                        System.out.println("******************************");
-                        assert d1 != null;
-                        d1.display_1();
-                        System.out.println(d1.add_row());
-                    } else if (data_choice == 2) {
-                        Data d2 = Data.create_1();
-                        System.out.println("*******************************************************************");
-                        assert d2 != null;
-                        d2.display_2();
-                        System.out.println(d2.add_row_2());
-                    } else if (data_choice == 3) {
-                        Data d3 = Data.create_1();
-                        System.out.println("*******************************************************************");
-                        assert d3 != null;
-                        d3.display_3();
-                        System.out.println(d3.add_row_3());
+                        switch (data_choice) {
+                            case "1" -> {
+                                Data d1 = Data.create_1();
+                                System.out.println("******************************");
+                                d1.display_1();
+                                System.out.println(d1.add_row());
+                            }
+                            case "2" -> {
+                                Data d2 = Data.create_2();
+                                System.out.println("*******************************************************************");
+                                d2.display_2();
+                                System.out.println(d2.add_row());
+                            }
+                            case "3" -> {
+                                Data d3 = Data.create_3();
+                                System.out.println("*******************************************************************");
+                                d3.display_3();
+                                System.out.println(d3.add_row());
+                            }
+                        }
                     }
                 }
             }
