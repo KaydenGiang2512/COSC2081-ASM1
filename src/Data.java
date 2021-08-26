@@ -5,14 +5,14 @@ public class Data {
     public static String file_name = "src\\covid-data.csv";
     String continent;
     String country;
-    String start_date;
+    String date;
     //    String end_date;
     int range;
 
-    public Data(String continent, String country, String start_date, int range) {
+    public Data(String continent, String country, String date, int range) {
         this.continent = continent;
         this.country = country;
-        this.start_date = start_date;
+        this.date = date;
 //        this.end_date = end_date;
         this.range = range;
     }
@@ -27,7 +27,6 @@ public class Data {
                 String row = sc.nextLine();
                 if (row.isEmpty()) continue;
                 rows.add(row);
-
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -43,12 +42,10 @@ public class Data {
                 String row = sc.nextLine();
                 String[] values = row.split(",");
                 for (int i = 0; i < values.length; i++) {
-                    if (values[1].equals(continent) && values[2].equals(country) && values[3].equals(start_date)) {
-                        return row;
-                    }
+                    if (values[1].equals(continent) && values[2].equals(country) && values[3].equals(date)) return row;
                 }
             }
-            System.out.println("You entered an invalid continent/country/date! Please try again!");
+//            System.out.println("You entered an invalid continent/country/date! Please try again!");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -65,6 +62,19 @@ public class Data {
         return stop_date;
     }
 
+    private boolean check_input(){
+        for (int i = 0; i < get_all_rows().size(); i++){
+            String row = get_all_rows().get(i);
+            String[] values = row.split(",");
+            for (int j = 0 ; j < values.length; j++){
+                if(values[1].equals(continent) && !values[2].equals(country)) return true;
+                if(!values[1].equals(continent) && !values[2].equals(country)) return true;
+                if(values[1].equals(continent) && !values[3].equals(date)) return true;
+                if(!values[1].equals(continent) && !values[3].equals(date)) return true;
+            }
+        }
+        return false;
+    }
 
     public ArrayList<String> add_row() {
         int from_idx = get_all_rows().indexOf(get_start_row());
@@ -110,7 +120,7 @@ public class Data {
 
     public void display_1() {
         if (check_row_info()) return;
-        System.out.printf("\nYour continent is %s, Your country is %s, starting from %s to %s \n\n", continent,country,start_date,get_stop_date());
+        System.out.printf("\nYour continent is %s, Your country is %s, starting from %s to %s \n\n", continent,country,date,get_stop_date());
     }
 
 //    public static Data create_2() {
@@ -136,16 +146,16 @@ public class Data {
         int choice = sc.nextInt();
         if (choice == 1) {
             if (days >= 7 && days % 7 == 0) {
-                System.out.printf("Your continent is %s, your country is %s, showing %d week(s) from %s \n\n", continent,country,days/7,start_date);
+                System.out.printf("Your continent is %s, your country is %s, showing %d week(s) from %s \n\n", continent,country,days/7,date);
             }
             else if (days >= 7) {
-                System.out.printf("Your continent is %s, your country is %s, showing %d week(s) %d day(s) from %s \n\n", continent, country, days/7, days % 7,start_date);
+                System.out.printf("Your continent is %s, your country is %s, showing %d week(s) %d day(s) from %s \n\n", continent, country, days/7, days % 7,date);
             } else {
-                System.out.printf("Your continent is %s, your country is %s, showing %d day(s) from %s \n\n", continent,country,(days % 7),start_date);
+                System.out.printf("Your continent is %s, your country is %s, showing %d day(s) from %s \n\n", continent,country,(days % 7),date);
             }
         }
         else if (choice == 2) {
-            System.out.printf("Your continent is %s, your country is %s, showing %d day(s) from %s \n\n", continent,country,days,start_date);
+            System.out.printf("Your continent is %s, your country is %s, showing %d day(s) from %s \n\n", continent,country,days,date);
         } else {
             System.out.println("Error");
         }
@@ -190,10 +200,16 @@ public class Data {
     }
 
     public static void main(String[] args) {
-        Data d1 = new Data("Asia","Afghanistan","6/18/2021", 7);
-        System.out.println(d1.add_row());
-        d1.display_1();
-        d1.display_2();
-        d1.display_3();
+        Data d1 = new Data("Europe", "Afghanistan", "7/6/2021", 5);
+        if (d1.check_input()) {
+            System.out.println("Error");
+
+        } else {
+            System.out.println(d1.add_row());
+            d1.display_1();
+            d1.display_2();
+            d1.display_3();
+        }
+
     }
 }
