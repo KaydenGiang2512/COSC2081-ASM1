@@ -1,5 +1,3 @@
-import jdk.nashorn.internal.runtime.Undefined;
-
 import java.io.*;
 import java.util.*;
 
@@ -112,11 +110,21 @@ public class Data {
         return "";
     }
 
-    public ArrayList<String> add_row_1_2() {
+    public ArrayList<String> add_row_1() {
         int from_idx = get_all_rows().indexOf(get_start_row());
         int idx = get_all_rows().indexOf(get_stop_row());
         ArrayList<String> result = new ArrayList<>();
         for(int i = from_idx; i <= idx;i++){
+            result.add(get_all_rows().get(i));
+            result.add("\n");
+        }
+        return result;
+    }
+
+    public ArrayList<String> add_row_2() {
+        int from_idx = get_all_rows().indexOf(get_start_row());
+        ArrayList<String> result = new ArrayList<>();
+        for(int i = from_idx; i <= from_idx + range;i++){
             result.add(get_all_rows().get(i));
             result.add("\n");
         }
@@ -160,6 +168,7 @@ public class Data {
         return false;
     }
 
+
     public static Data create_1() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter your continent (first letter MUST be capitalized): ");
@@ -173,10 +182,6 @@ public class Data {
         return new Data(continent,country,start_date,end_date,0);
     }
 
-    public void display_1() {
-        if (check_row_info()) return;
-        System.out.printf("Your continent is %s, your country is %s\nStarting from %s to %s\n", continent,country,start_date,end_date);
-    }
 
     public static Data create_2() {
         Scanner sc = new Scanner(System.in);
@@ -191,6 +196,7 @@ public class Data {
         return new Data(continent, country, start_date, "", range);
     }
 
+
     public static Data create_3() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter your continent (first letter MUST be capitalized): ");
@@ -203,6 +209,13 @@ public class Data {
         int range = sc.nextInt();
         return new Data(continent, country, "", end_date, range);
     }
+
+
+    public void display_1() {
+        if (check_row_info()) return;
+        System.out.printf("Your continent is %s, your country is %s\nStarting from %s to %s\n", continent,country,start_date,end_date);
+    }
+
 
     public void display_2(){
         if (check_row_info()) System.out.println("Error");
@@ -255,12 +268,12 @@ public class Data {
         int choice = sc.nextInt();
         if (choice == 1){
             Data d2 = create_1();
-            System.out.println(d2.add_row_1_2());
+            System.out.println(d2.add_row_1());
             d2.display_1();
         }
         else if (choice == 2){
             Data d3 = create_2();
-            System.out.println(d3.add_row_1_2());
+            System.out.println(d3.add_row_2());
             d3.display_2();
         }
         else if (choice == 3){
