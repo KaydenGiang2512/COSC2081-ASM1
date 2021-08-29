@@ -226,7 +226,7 @@ public class Data {
         return false;
     }
 
-    // Create input for first case
+    // Create input for first time range method
     public static Data create1() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter your continent (first letter MUST be capitalized): ");
@@ -240,7 +240,7 @@ public class Data {
         return new Data(continent, country, startDate, endDate, 0);
     }
 
-    // Create input for second case
+    // Create input for second time range method
     public static Data create2() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter your continent (first letter MUST be capitalized): ");
@@ -254,7 +254,7 @@ public class Data {
         return new Data(continent, country, startDate, "", rangeChoice);
     }
 
-    // Create input for third case
+    // Create input for third time range method
     public static Data create3() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter your continent (first letter MUST be capitalized): ");
