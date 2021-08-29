@@ -62,21 +62,7 @@ public class Data {
     public int getRangeChoice() {
         return this.rangeChoice;
     }
-
-    public void setRange(int range) {
-        if (range < 0) return;
-        this.range = range;
-    }
-
-    public int getRange() {
-        if (rangeChoice == 1){
-            range *= 7;
-        }
-        else {
-            return this.range;
-        }
-        return this.range;
-    }
+    
 
     // Read file csv
     // Method to read the entire csv file from the first row to the last row
