@@ -63,16 +63,7 @@ public class Data {
         return this.range_choice;
     }
 
-    public void setRange(int range) {
-        if (range < 0) return;
-        this.range = range;
-    }
-
-    public int getRange() {
-        return this.range;
-    }
-
-    // read file csv
+    // Method to read the entire csv file from the first row to the last row
     public ArrayList<String> getAllRows() {
         ArrayList<String> rows = new ArrayList<>();
         try {
@@ -141,50 +132,58 @@ public class Data {
     public ArrayList<String> addRow2() {
         int from_idx = getAllRows().indexOf(getStartRow());
         ArrayList<String> result = new ArrayList<>();
-        if (from_idx + range > getAllRows().size()){
-            System.out.println("");
-        }
-        else {
-            if (checkRowInfo2()){
-                System.out.println("Error");
-            }
-            else {
+        if (from_idx + range > getAllRows().size()) {
+            System.out.println("Error!");
+        } else {
+            if (checkRowInfo2()) {
+                System.out.println("Error!");
+            } else {
                 for (int i = from_idx; i <= from_idx + range; i++) {
                     result.add(getAllRows().get(i));
                     result.add("\n");
                 }
             }
         }
-
         return result;
     }
 
     public ArrayList<String> addRow3() {
         int to_idx = getAllRows().indexOf(getStopRow());
         ArrayList<String> result = new ArrayList<>();
-        if (range_choice == 1) range *= 7;
-        if (to_idx - range < 0){
-            System.out.println("Error");
+        if (to_idx - range < 0) {
+            System.out.println("Error!");
         } else {
             if (checkRowInfo3()) {
-                System.out.println("Error");
+                System.out.println("Error!");
             } else {
                 for (int i = to_idx - range; i <= to_idx; i++) {
                     result.add(getAllRows().get(i));
                     result.add("\n");
                 }
             }
-
         }
         return result;
     }
 
-    //Checking if the ending row has a different country from the starting row
+//    private boolean check_input() {
+//        for (int i = 0; i < get_all_rows().size(); i++){
+//            String row = get_all_rows().get(i);
+//            String[] values = row.split(",");
+//            for (int j = 0 ; j < values.length; j++){
+//                if(values[1].equals(getContinent()) && !values[2].equals(getCountry())) return true;
+//                if(!values[1].equals(getContinent()) && !values[2].equals(getCountry())) return true;
+//                if(values[1].equals(getContinent()) && !values[3].equals(getStart_date())) return true;
+//                if(!values[1].equals(getContinent()) && !values[3].equals(getEnd_date())) return true;
+//            }
+//        }
+//        return false;
+//    }
 
+    //Checking if the ending row has a different country from the starting row
     public boolean checkRowInfo2() {
         int from_idx = getAllRows().indexOf(getStartRow());
         String[] info_first_row = getAllRows().get(from_idx).split(",");
-        if (range_choice == 1) range*=7;
+        if (range_choice == 1) range *= 7;
         String[] info_last_row = getAllRows().get(from_idx + range).split(",");
         for (int j = 0; j < info_first_row.length; j++) {
             for (int k = 0; k < info_last_row.length; k++) {
@@ -193,18 +192,17 @@ public class Data {
                 }
             }
         }
-
         return false;
     }
 
+    //Checking if the ending row has a different country from the starting row
     public boolean checkRowInfo3() {
-        int idx = getAllRows().indexOf(getStopRow());
-        String[] info_stop_row = getAllRows().get(idx).split(",");
-        if (range_choice == 1) range *= 7;
-        String[] info_first_row = getAllRows().get(Math.abs(idx - range) ).split(",");
-        for (int j = 0; j < info_stop_row.length; j++) {
+        int to_idx = getAllRows().indexOf(getStopRow());
+        String[] info_last_row = getAllRows().get(to_idx).split(",");
+        String[] info_first_row = getAllRows().get(Math.abs(to_idx - range)).split(",");
+        for (int j = 0; j < info_last_row.length; j++) {
             for (int k = 0; k < info_first_row.length; k++){
-                if (!info_first_row[1].equals(info_stop_row[1]) || !info_first_row[2].equals(info_stop_row[2])){
+                if (!info_last_row[1].equals(info_first_row[1]) || !info_last_row[2].equals(info_first_row[2])){
                     return true;
                 }
             }
@@ -218,13 +216,12 @@ public class Data {
         String continent = sc.nextLine();
         System.out.print("Enter your country (first letter MUST be capitalized): ");
         String country = sc.nextLine();
-        System.out.print("Enter starting date: ");
+        System.out.print("Enter starting date (mm/dd/yyyy): ");
         String start_date = sc.nextLine();
-        System.out.print("Enter ending date: ");
+        System.out.print("Enter ending date (mm/dd/yyyy): ");
         String end_date = sc.nextLine();
         return new Data(continent, country, start_date, end_date, 0);
     }
-
 
     public static Data create2() {
         Scanner sc = new Scanner(System.in);
@@ -232,13 +229,12 @@ public class Data {
         String continent = sc.nextLine();
         System.out.print("Enter your country (first letter MUST be capitalized): ");
         String country = sc.nextLine();
-        System.out.print("Enter starting date: ");
+        System.out.print("Enter starting date (mm/dd/yyyy): ");
         String start_date = sc.nextLine();
         System.out.print("Choose display in weeks (1) or display in days (2): ");
         int range_choice = sc.nextInt();
         return new Data(continent, country, start_date, "", range_choice);
     }
-
 
     public static Data create3() {
         Scanner sc = new Scanner(System.in);
@@ -246,7 +242,7 @@ public class Data {
         String continent = sc.nextLine();
         System.out.print("Enter your country (first letter MUST be capitalized): ");
         String country = sc.nextLine();
-        System.out.print("Enter ending date: ");
+        System.out.print("Enter ending date (mm/dd/yyyy): ");
         String end_date = sc.nextLine();
         System.out.print("Choose display in weeks (1) or display in days (2): ");
         int range_choice = sc.nextInt();
@@ -259,7 +255,8 @@ public class Data {
         if (range_choice == 1) {
             System.out.print("Please enter the number of weeks: ");
             range = sc.nextInt();
-        } else if (range_choice == 2) {
+        }
+        else if (range_choice == 2) {
             System.out.print("Please enter the number of days: ");
             range = sc.nextInt();
         }
@@ -267,15 +264,13 @@ public class Data {
     }
 
     public void display1() {
-//        if (checkRowInfo()) return;
         System.out.printf("Your continent is %s, your country is %s\nStarting from %s to %s\n", continent, country, start_date, end_date);
     }
 
     public void display2() {
         if (checkRowInfo2()) {
-            System.out.println("");
-        }
-        else {
+            System.out.println("Time range not found!");
+        } else {
             if (range_choice == 1) {
                 if (range <= 0) {
                     System.out.println("Invalid number of weeks!");
@@ -290,15 +285,14 @@ public class Data {
                 System.out.printf("Your continent is %s, your country is %s\nShowing %d day(s) from %s\n", continent, country, days, start_date);
             }
         }
-
     }
 
     public void display3() {
         if (checkRowInfo3()){
-            return;
-        }
-        else {
+            System.out.println("Time range not found!");
+        } else {
             if (range_choice == 1) {
+                range *= 7;
                 if (range <= 0) {
                     System.out.println("Invalid number of weeks!");
                 } else {
@@ -313,6 +307,5 @@ public class Data {
                 }
             }
         }
-
     }
 }

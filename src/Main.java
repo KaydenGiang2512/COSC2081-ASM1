@@ -14,7 +14,7 @@ public class Main {
                     "(e.g., 2 days from 1/20/2021 means there are 3 days 1/20/2021, 1/21/2021, and 1/22/2021)");
             System.out.println("3. A number of days or weeks to a particular date " +
                     "(e.g., 1 week to 1/8/2021 means there are 8 days from 1/1/2021 to 1/8/2021)");
-            System.out.println("0. The user wants to stop the program from running\n");
+            System.out.println("0. If you want this program to stop running, please select this option!\n");
             //Initialize a new scanner to receive input from the user
             Scanner sc = new Scanner(System.in);
             System.out.print("Please select an option 1-3: ");
@@ -46,49 +46,65 @@ public class Main {
                     }
                 }
                 case "1" -> {
-                    Data d1 = Data.create_1();
+                    Data d1 = Data.create1();
                     System.out.println("****************************************************");
-                    d1.display_1();
+                    d1.display1();
                     System.out.println("****************************************************\n");
-                    System.out.println(d1.add_row());
+                    System.out.println(d1.addRow1());
                 }
                 case "2" -> {
-                    Data d2 = Data.create_2_3();
+                    Data d2 = Data.create2();
                     System.out.println("*******************************************************************");
-                    d2.display_2();
-                    System.out.println(d2.add_row());
+                    d2.inputRange();
+                    System.out.println("*******************************************************************");
+                    d2.display2();
+                    System.out.println("*******************************************************************\n");
+                    System.out.println(d2.addRow2());
                 }
                 case "3" -> {
-                    Data d3 = Data.create_2_3();
+                    Data d3 = Data.create3();
                     System.out.println("*******************************************************************");
-                    d3.display_3();
-                    System.out.println(d3.add_row());
+                    d3.inputRange();
+                    System.out.println("*******************************************************************");
+                    d3.display3();
+                    System.out.println("*******************************************************************\n");
+                    System.out.println(d3.addRow3());
                 }
                 default -> {
-                    while (true) {
+                    boolean isInvalid = true;
+                    while (isInvalid) {
                         System.out.println("************************************************");
                         System.out.print("Invalid selection! Please select an option 1-3: ");
                         time_range = sc.nextLine();
 
                         switch (time_range) {
                             case "1" -> {
-                                Data d1 = Data.create_1();
+                                Data d4 = Data.create1();
                                 System.out.println("****************************************************");
-                                d1.display_1();
+                                d4.display1();
                                 System.out.println("****************************************************\n");
-                                System.out.println(d1.add_row());
+                                System.out.println(d4.addRow1());
+                                isInvalid = false;
                             }
                             case "2" -> {
-                                Data d2 = Data.create_2_3();
+                                Data d5 = Data.create2();
                                 System.out.println("*******************************************************************");
-                                d2.display_2();
-                                System.out.println(d2.add_row());
+                                d5.inputRange();
+                                System.out.println("*******************************************************************");
+                                d5.display2();
+                                System.out.println("*******************************************************************\n");
+                                System.out.println(d5.addRow2());
+                                isInvalid = false;
                             }
                             case "3" -> {
-                                Data d3 = Data.create_2_3();
+                                Data d6 = Data.create3();
                                 System.out.println("*******************************************************************");
-                                d3.display_3();
-                                System.out.println(d3.add_row());
+                                d6.inputRange();
+                                System.out.println("*******************************************************************");
+                                d6.display3();
+                                System.out.println("*******************************************************************\n");
+                                System.out.println(d6.addRow3());
+                                isInvalid = false;
                             }
                         }
                     }
