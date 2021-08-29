@@ -2,9 +2,9 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        // While loop to keep the program running forever, unless the user wants to end the program by selecting 0
+        // Implementing a while loop to keep the program running forever, unless the user wants to terminate the program by selecting 0
         while (true) {
-            // Welcome screen with a simple design prompting the user to choose their desirable time range selection method
+            // Welcome screen with a simple design consisting of a prompt for the user to enter their desired time range display method
             System.out.println("\n******************************************************");
             System.out.println("Welcome to Group 15's COVID Pandemic Analysis program!");
             System.out.println("******************************************************\n");
@@ -15,13 +15,14 @@ public class Main {
             System.out.println("3. A number of days or weeks to a particular date " +
                     "(e.g., 1 week to 1/8/2021 means there are 8 days from 1/1/2021 to 1/8/2021)");
             System.out.println("0. If you want this program to stop running, please select this option!\n");
-            //Initialize a new scanner to receive input from the user
+            //Initialize a new scanner to receive input from the user (a number 1-3 representing the corresponding method)
             Scanner sc = new Scanner(System.in);
             System.out.print("Please select an option 1-3: ");
             String time_range = sc.nextLine();
 
-            //Creating a switch case to handle different user input possibilities
+            //Creating an advanced switch case to handle the different user input possibilities
             switch (time_range) {
+                // option 0: This option allows the user to stop the program
                 case "0" -> {
                     boolean isRunning = false;
                     System.out.print("Do you want to run this program again? 1 (yes), 2 (no): ");
@@ -45,6 +46,7 @@ public class Main {
                         }
                     }
                 }
+                // option 1: This option shows the time range as a pair of start date and end date
                 case "1" -> {
                     Data d1 = Data.create1();
                     System.out.println("****************************************************");
@@ -52,6 +54,7 @@ public class Main {
                     System.out.println("****************************************************\n");
                     System.out.println(d1.addRow1());
                 }
+                // option 2: This option shows the time range as a number of weeks/days from a particular date
                 case "2" -> {
                     Data d2 = Data.create2();
                     System.out.println("*******************************************************************");
@@ -61,6 +64,7 @@ public class Main {
                     System.out.println("*******************************************************************\n");
                     System.out.println(d2.addRow2());
                 }
+                // option 3: This option shows the time range as a number of weeks/days to a particular date
                 case "3" -> {
                     Data d3 = Data.create3();
                     System.out.println("*******************************************************************");
@@ -70,14 +74,40 @@ public class Main {
                     System.out.println("*******************************************************************\n");
                     System.out.println(d3.addRow3());
                 }
+                // default case: This option handles all the instances where a user enters an invalid option (not 0 or 1-3) 
                 default -> {
+                    // Setting a boolean variable to track the default option
                     boolean isInvalid = true;
+                    // This while loop ensures that the program is still looping forever when the default case is invoked
                     while (isInvalid) {
                         System.out.println("************************************************");
                         System.out.print("Invalid selection! Please select an option 1-3: ");
                         time_range = sc.nextLine();
 
                         switch (time_range) {
+                            case "0" -> {
+                                boolean isRunning = false;
+                                System.out.print("Do you want to run this program again? 1 (yes), 2 (no): ");
+                                int option = sc.nextInt();
+                                while (!isRunning) {
+                                    if (option == 1) {
+                                        isRunning = true;
+                                    }
+                                    else if (option == 2) {
+                                        System.out.println("Exiting program...");
+                                        System.exit(0);
+                                    } else {
+                                        System.out.print("Invalid selection! Please select between 1 (yes), 2 (no): ");
+                                        option = sc.nextInt();
+                                        if (option == 1) {
+                                            isRunning = true;
+                                        }
+                                        else if (option == 2) {
+                                            System.exit(0);
+                                        }
+                                    }
+                                }
+                            }
                             case "1" -> {
                                 Data d4 = Data.create1();
                                 System.out.println("****************************************************");
