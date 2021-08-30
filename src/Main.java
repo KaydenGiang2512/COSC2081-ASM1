@@ -1,5 +1,6 @@
 import java.util.*;
 
+// The Main.java file serves as the main station to run our program, as well as the container of all User Interface functionalities
 public class Main {
     public static void main(String[] args) {
         // Implementing a while loop to keep the program running forever, unless the user wants to terminate the program by selecting 0
