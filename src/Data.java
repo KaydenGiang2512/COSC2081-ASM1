@@ -63,20 +63,13 @@ public class Data {
         return this.rangeChoice;
     }
 
-    public void setRange(int range) {
-        if (range < 0) return;
+    public void setRange(int range){
         this.range = range;
     }
-
-    public int getRange() {
-        if (rangeChoice == 1){
-            range *= 7;
-        }
-        else {
-            return this.range;
-        }
+    public int getRange(){
         return this.range;
     }
+
 
     // Read file csv
     // Method to read the entire csv file from the first row to the last row
@@ -215,11 +208,15 @@ public class Data {
     public boolean checkRowInfo3() {
         int idx = getAllRows().indexOf(getStopRow());
         String[] infoStopRow = getAllRows().get(idx).split(",");
-        String[] infoFirstRow = getAllRows().get(Math.abs(idx - range)).split(",");
-        for (int j = 0; j < infoStopRow.length; j++) {
-            for (int k = 0; k < infoStopRow.length; k++){
-                if (!infoFirstRow[1].equals(infoStopRow[1]) || !infoFirstRow[2].equals(infoStopRow[2])){
-                    return true;
+        if ( idx - range < 0) {
+            System.out.println(" ");
+        } else {
+            String[] infoFirstRow = getAllRows().get(idx - range).split(",");
+            for (int j = 0; j < infoStopRow.length; j++) {
+                for (int k = 0; k < infoStopRow.length; k++){
+                    if (!infoFirstRow[1].equals(infoStopRow[1]) || !infoFirstRow[2].equals(infoStopRow[2])){
+                        return true;
+                    }
                 }
             }
         }
@@ -290,7 +287,7 @@ public class Data {
     // Display second case
     public void display2() {
         if (checkRowInfo2()) {
-            System.out.println(" ");
+            System.out.println("Error");
         }
         else {
             if (rangeChoice == 1) {
