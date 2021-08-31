@@ -1,19 +1,18 @@
 import java.io.*;
-        import java.util.*;
+import java.util.*;
 
 public class Data {
-    // Constructor
+    // Initializing private variables for future usage
     public static String fileName = "src\\covid-data.csv";
-    private String continent;
-    private String country;
+    private String location;
     private String startDate;
     private String endDate;
     private int rangeChoice;
     private int range;
 
-    public Data(String continent, String country, String startDate, String endDate, int rangeChoice) {
-        this.continent = continent;
-        this.country = country;
+    //Setting up the constructors
+    public Data( String location, String startDate, String endDate, int rangeChoice) {
+        this.location = location;
         this.startDate = startDate;
         this.endDate = endDate;
         this.rangeChoice = rangeChoice;
@@ -23,63 +22,52 @@ public class Data {
         this.range = range;
     }
 
-    public void setContinent(String continent) {
-        this.continent = continent;
-    }
+    //The setters for each variable
 
-    public String getContinent() {
-        return this.continent;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getCountry() {
-        return this.country;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public String getStartDate() {
-        return this.startDate;
-    }
-
     public void setEndDate(String endDate) {
         this.endDate = endDate;
-    }
-
-    public String getEndDate() {
-        return this.endDate;
     }
 
     public void setRangeChoice(int rangeChoice) {
         this.rangeChoice = rangeChoice;
     }
 
+    public void setRange(int range){
+        this.range = range;
+    }
+
+    //The getters for each variable
+
+    public String getLocation() {
+        return this.location;
+    }
+
+    public String getStartDate() {
+        return this.startDate;
+    }
+
+    public String getEndDate() {
+        return this.endDate;
+    }
+
     public int getRangeChoice() {
         return this.rangeChoice;
     }
 
-    public void setRange(int range) {
-        if (range < 0) return;
-        this.range = range;
-    }
-
-    public int getRange() {
-        if (rangeChoice == 1){
-            range *= 7;
-        }
-        else {
-            return this.range;
-        }
+    public int getRange(){
         return this.range;
     }
 
-    // Read file csv
-    // Method to read the entire csv file from the first row to the last row
+    // Reading the csv file
+    // Method to read the entire CSV file from the first row to the last row
     public ArrayList<String> getAllRows() {
         ArrayList<String> rows = new ArrayList<>();
         try {
@@ -96,6 +84,7 @@ public class Data {
         return rows;
     }
 
+    //Method to get the first row of the CSV file based on user input
     public String getStartRow() {
         try {
             FileReader reader = new FileReader(fileName);
@@ -104,7 +93,7 @@ public class Data {
                 String row = sc.nextLine();
                 String[] values = row.split(",");
                 for (int i = 0; i < values.length; i++) {
-                    if (values[1].equals(getContinent()) && values[2].equals(getCountry()) && values[3].equals(getStartDate())) {
+                    if (values[2].equals(getLocation()) && values[3].equals(getStartDate())) {
                         return row;
                     }
                 }
@@ -115,6 +104,7 @@ public class Data {
         return "";
     }
 
+    //Method to get the last row of the CSV file based on user input
     public String getStopRow() {
         try {
             FileReader reader = new FileReader(fileName);
@@ -123,7 +113,7 @@ public class Data {
                 String row = sc.nextLine();
                 String[] values = row.split(",");
                 for (int i = 0; i < values.length; i++) {
-                    if (values[1].equals(getContinent()) && values[2].equals(getCountry()) && values[3].equals(getEndDate())) {
+                    if (values[2].equals(getLocation()) && values[3].equals(getEndDate())) {
                         return row;
                     }
                 }
@@ -137,9 +127,9 @@ public class Data {
     // Display rows for first case: From start date to end date
     public ArrayList<String> addRow1() {
         int fromIndex = getAllRows().indexOf(getStartRow());
-        int idx = getAllRows().indexOf(getStopRow());
+        int toIndex = getAllRows().indexOf(getStopRow());
         ArrayList<String> result = new ArrayList<>();
-        for (int i = fromIndex; i <= idx; i++) {
+        for (int i = fromIndex; i <= toIndex; i++) {
             result.add(getAllRows().get(i));
             result.add("\n");
         }
@@ -151,12 +141,12 @@ public class Data {
         int fromIndex = getAllRows().indexOf(getStartRow());
         ArrayList<String> result = new ArrayList<>();
         if(rangeChoice == 1) range *= 7;
-        if (fromIndex + range > getAllRows().size()){
+        if (fromIndex + range >= getAllRows().size()) {
             System.out.println("Error");
         }
         else {
-            if (checkRowInfo2()){
-                System.out.println("Error");
+            if (checkRowInfo2()) {
+                System.out.println("Time range not found");
             }
             else {
                 for (int i = fromIndex; i <= fromIndex + range; i++) {
@@ -177,30 +167,30 @@ public class Data {
             System.out.println("Error");
         } else {
             if (checkRowInfo3()) {
-                System.out.println("Error");
+                System.out.println("Time range not found");
             } else {
                 for (int i = toIndex - range; i <= toIndex; i++) {
                     result.add(getAllRows().get(i));
                     result.add("\n");
                 }
             }
-
         }
         return result;
     }
 
     //Checking if the ending row has a different country from the starting row
-    //Checking second case
+    //Checking second time range case
     public boolean checkRowInfo2() {
         int fromIndex = getAllRows().indexOf(getStartRow());
-        String[] info_first_row = getAllRows().get(fromIndex).split(",");
-        if (fromIndex + range >= getAllRows().size()){
-            System.out.println(" ");
-        } else{
-            String[] info_last_row = getAllRows().get(fromIndex + range).split(",");
-            for (int j = 0; j < info_first_row.length; j++) {
-                for (int k = 0; k < info_last_row.length; k++) {
-                    if (!info_first_row[1].equals(info_last_row[1]) || !info_first_row[2].equals(info_last_row[2])){
+        String[] infoFirstRow = getAllRows().get(fromIndex).split(",");
+        int endIndex = fromIndex + range;
+        if (endIndex >= getAllRows().size()) { // checking if the end index is out of the file csv length
+            return true;
+        } else {
+            String[] infoLastRow = getAllRows().get(fromIndex + range).split(",");
+            for (int j = 0; j < infoFirstRow.length; j++) {
+                for (int k = 0; k < infoLastRow.length; k++) {
+                    if (!infoFirstRow[2].equals(infoLastRow[2])) {
                         return true;
                     }
                 }
@@ -211,64 +201,65 @@ public class Data {
     }
 
     //Checking if the ending row has a different country from the starting row
-    //Checking third case
+    //Checking third time range case
     public boolean checkRowInfo3() {
-        int idx = getAllRows().indexOf(getStopRow());
-        String[] infoStopRow = getAllRows().get(idx).split(",");
-        String[] infoFirstRow = getAllRows().get(Math.abs(idx - range)).split(",");
-        for (int j = 0; j < infoStopRow.length; j++) {
-            for (int k = 0; k < infoStopRow.length; k++){
-                if (!infoFirstRow[1].equals(infoStopRow[1]) || !infoFirstRow[2].equals(infoStopRow[2])){
-                    return true;
+        int toIndex = getAllRows().indexOf(getStopRow());
+        String[] infoLastRow = getAllRows().get(toIndex).split(",");
+        int stopIndex = toIndex - range;
+        if (stopIndex < 0){ // checking if the stop index is negative
+            return true;
+        }
+        else {
+            String[] infoFirstRow = getAllRows().get(toIndex - range).split(",");
+            for (int j = 0; j < infoLastRow.length; j++) {
+                for (int k = 0; k < infoFirstRow.length; k++) {
+                    if (!infoFirstRow[2].equals(infoLastRow[2])) {
+                        return true;
+                    }
                 }
             }
         }
+
         return false;
     }
 
-    // Create input for first case
+    // Create input for the first time range case
     public static Data create1() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter your continent (first letter MUST be capitalized): ");
-        String continent = sc.nextLine();
         System.out.print("Enter your country (first letter MUST be capitalized): ");
-        String country = sc.nextLine();
+        String location = sc.nextLine();
         System.out.print("Enter starting date: ");
         String startDate = sc.nextLine();
         System.out.print("Enter ending date: ");
         String endDate = sc.nextLine();
-        return new Data(continent, country, startDate, endDate, 0);
+        return new Data( location, startDate, endDate, 0);
     }
 
-    // Create input for second case
+    // Create input for the second time range case
     public static Data create2() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter your continent (first letter MUST be capitalized): ");
-        String continent = sc.nextLine();
         System.out.print("Enter your country (first letter MUST be capitalized): ");
-        String country = sc.nextLine();
+        String location = sc.nextLine();
         System.out.print("Enter starting date: ");
         String startDate = sc.nextLine();
         System.out.print("Choose display in weeks (1) or display in days (2): ");
         int rangeChoice = sc.nextInt();
-        return new Data(continent, country, startDate, "", rangeChoice);
+        return new Data( location, startDate, "", rangeChoice);
     }
 
-    // Create input for third case
+    // Create input for the third time range case
     public static Data create3() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter your continent (first letter MUST be capitalized): ");
-        String continent = sc.nextLine();
         System.out.print("Enter your country (first letter MUST be capitalized): ");
-        String country = sc.nextLine();
+        String location = sc.nextLine();
         System.out.print("Enter ending date: ");
         String endDate = sc.nextLine();
         System.out.print("Choose display in weeks (1) or display in days (2): ");
         int rangeChoice = sc.nextInt();
-        return new Data(continent, country, "", endDate, rangeChoice);
+        return new Data( location, "", endDate, rangeChoice);
     }
 
-    // Input time range for second and third cases
+    // Input range for second and third cases (a number of weeks/days)
     public void inputRange() {
         Scanner sc = new Scanner(System.in);
         rangeChoice = getRangeChoice();
@@ -282,55 +273,63 @@ public class Data {
         new Data(range);
     }
 
-    // Display first case
+    // Display the first time range case
     public void display1() {
-        System.out.printf("Your continent is %s, your country is %s\nStarting from %s to %s\n", continent, country, startDate, endDate);
+        System.out.printf("Your country is %s\nStarting from %s to %s\n", location, startDate, endDate);
     }
 
-    // Display second case
+    // Display the second time range case
     public void display2() {
-        if (checkRowInfo2()) {
-            System.out.println(" ");
-        }
-        else {
-            if (rangeChoice == 1) {
-                int days = range * 7;
-                if (range <= 0) {
-                    System.out.println("Invalid number of weeks!");
-                } else {
-                    System.out.printf("Your continent is %s, your country is %s\nShowing %d week(s) from %s\n", continent, country, days/7, startDate);
-                }
-            } else if (rangeChoice == 2) {
-                int days = range;
-                if (days <= 0) {
-                    System.out.println("Invalid number of days!");
-                }
-                System.out.printf("Your continent is %s, your country is %s\nShowing %d day(s) from %s\n", continent, country, days, startDate);
+        if (rangeChoice == 1) {
+            int weeks = range * 7;
+            if (range <= 0) {
+                System.out.println("Invalid number of weeks!");
+            }
+            else if (checkRowInfo2()) {
+                System.out.println("Time range not found!");
+            }
+            else {
+                System.out.printf("Your country is %s\nShowing %d week(s) from %s\n", location, weeks / 7, startDate);
             }
         }
 
-    }
-
-    // Display third case
-    public void display3() {
-        if (checkRowInfo3()){
-            System.out.println("Error");
+        if (rangeChoice == 2) {
+            int days = range;
+            if (days <= 0) {
+                System.out.println("Invalid number of days!");
+            }
+            else if (checkRowInfo2()) {
+                System.out.println("Time range not found!");
+            }
+            else {
+                System.out.printf("Your country is %s\nShowing %d day(s) from %s\n", location, days, startDate);
+            }
         }
-        else {
-            if (rangeChoice == 1) {
-                int days = range * 7;
-                if (range <= 0) {
-                    System.out.println("Invalid number of weeks!");
-                } else {
-                    System.out.printf("Your continent is %s, your country is %s\nShowing %d week(s) to %s\n", continent, country, days/7, endDate);
-                }
-            } else if (rangeChoice == 2) {
-                int days = range;
-                if (days <= 0) {
-                    System.out.println("Invalid number of days!");
-                } else {
-                    System.out.printf("Your continent is %s, your country is %s\nShowing %d day(s) to %s\n", continent, country, days, endDate);
-                }
+    }
+    // Display the third time range case
+    public void display3() {
+        if (rangeChoice == 1) {
+            int weeks = range * 7;
+            if (range <= 0) {
+                System.out.println("Invalid number of weeks!");
+            }
+            else if (checkRowInfo3()){
+                System.out.println("Time range not found!");
+            }
+            else {
+                System.out.printf("Your country is %s\nShowing %d week(s) to %s\n", location, weeks/7, endDate);
+            }
+        }
+        else if (rangeChoice == 2) {
+            int days = range;
+            if (days <= 0) {
+                System.out.println("Invalid number of days!");
+            }
+            else if (checkRowInfo3()){
+                System.out.println("Time range not found!");
+            }
+            else {
+                System.out.printf("Your country is %s\nShowing %d day(s) to %s\n", location, days, endDate);
             }
         }
     }
