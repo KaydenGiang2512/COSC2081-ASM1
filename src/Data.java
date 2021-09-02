@@ -1,5 +1,9 @@
+package com.company;
+
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Data {
     // Initializing private variables for future usage
@@ -11,7 +15,7 @@ public class Data {
     private int range;
 
     //Setting up the constructors
-    public Data( String location, String startDate, String endDate, int rangeChoice) {
+    public Data(String location, String startDate, String endDate, int rangeChoice) {
         this.location = location;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -20,6 +24,9 @@ public class Data {
 
     public Data(int range) {
         this.range = range;
+    }
+
+    public Data() {
     }
 
     //The setters for each variable
@@ -40,7 +47,7 @@ public class Data {
         this.rangeChoice = rangeChoice;
     }
 
-    public void setRange(int range){
+    public void setRange(int range) {
         this.range = range;
     }
 
@@ -62,7 +69,7 @@ public class Data {
         return this.rangeChoice;
     }
 
-    public int getRange(){
+    public int getRange() {
         return this.range;
     }
 
@@ -92,7 +99,7 @@ public class Data {
             while (sc.hasNextLine()) {
                 String row = sc.nextLine();
                 String[] values = row.split(",");
-                for (int i = 0; i < values.length; i++) {
+                for (int i = 0; i < values.length - 1; i++) {
                     if (values[2].equals(getLocation()) && values[3].equals(getStartDate())) {
                         return row;
                     }
@@ -112,7 +119,7 @@ public class Data {
             while (sc.hasNextLine()) {
                 String row = sc.nextLine();
                 String[] values = row.split(",");
-                for (int i = 0; i < values.length; i++) {
+                for (int i = 0; i < values.length - 1; i++) {
                     if (values[2].equals(getLocation()) && values[3].equals(getEndDate())) {
                         return row;
                     }
@@ -129,7 +136,7 @@ public class Data {
         int fromIndex = getAllRows().indexOf(getStartRow());
         int toIndex = getAllRows().indexOf(getStopRow());
         ArrayList<String> result = new ArrayList<>();
-        for (int i = fromIndex; i <= toIndex; i++) {
+        for (int i = fromIndex; i <= toIndex - 1; i++) {
             result.add(getAllRows().get(i));
             result.add("\n");
         }
@@ -140,16 +147,14 @@ public class Data {
     public ArrayList<String> addRow2() {
         int fromIndex = getAllRows().indexOf(getStartRow());
         ArrayList<String> result = new ArrayList<>();
-        if(rangeChoice == 1) range *= 7;
+        if (rangeChoice == 1) range *= 7;
         if (fromIndex + range >= getAllRows().size()) {
             System.out.println("Error");
-        }
-        else {
+        } else {
             if (checkRowInfo2()) {
                 System.out.println("Time range not found");
-            }
-            else {
-                for (int i = fromIndex; i <= fromIndex + range; i++) {
+            } else {
+                for (int i = fromIndex; i <= fromIndex + range - 1; i++) {
                     result.add(getAllRows().get(i));
                     result.add("\n");
                 }
@@ -163,13 +168,13 @@ public class Data {
         int toIndex = getAllRows().indexOf(getStopRow());
         ArrayList<String> result = new ArrayList<>();
         if (rangeChoice == 1) range *= 7;
-        if (toIndex - range < 0){
+        if (toIndex - range < 0) {
             System.out.println("Error");
         } else {
             if (checkRowInfo3()) {
                 System.out.println("Time range not found");
             } else {
-                for (int i = toIndex - range; i <= toIndex; i++) {
+                for (int i = toIndex - range; i <= toIndex - 1; i++) {
                     result.add(getAllRows().get(i));
                     result.add("\n");
                 }
@@ -206,10 +211,9 @@ public class Data {
         int toIndex = getAllRows().indexOf(getStopRow());
         String[] infoLastRow = getAllRows().get(toIndex).split(",");
         int stopIndex = toIndex - range;
-        if (stopIndex < 0){ // checking if the stop index is negative
+        if (stopIndex < 0) { // checking if the stop index is negative
             return true;
-        }
-        else {
+        } else {
             String[] infoFirstRow = getAllRows().get(toIndex - range).split(",");
             for (int j = 0; j < infoLastRow.length; j++) {
                 for (int k = 0; k < infoFirstRow.length; k++) {
@@ -232,7 +236,7 @@ public class Data {
         String startDate = sc.nextLine();
         System.out.print("Enter ending date: ");
         String endDate = sc.nextLine();
-        return new Data( location, startDate, endDate, 0);
+        return new Data(location, startDate, endDate, 0);
     }
 
     // Create input for the second time range case
@@ -244,7 +248,7 @@ public class Data {
         String startDate = sc.nextLine();
         System.out.print("Choose display in weeks (1) or display in days (2): ");
         int rangeChoice = sc.nextInt();
-        return new Data( location, startDate, "", rangeChoice);
+        return new Data(location, startDate, "", rangeChoice);
     }
 
     // Create input for the third time range case
@@ -256,7 +260,7 @@ public class Data {
         String endDate = sc.nextLine();
         System.out.print("Choose display in weeks (1) or display in days (2): ");
         int rangeChoice = sc.nextInt();
-        return new Data( location, "", endDate, rangeChoice);
+        return new Data(location, "", endDate, rangeChoice);
     }
 
     // Input range for second and third cases (a number of weeks/days)
@@ -284,11 +288,9 @@ public class Data {
             int weeks = range * 7;
             if (range <= 0) {
                 System.out.println("Invalid number of weeks!");
-            }
-            else if (checkRowInfo2()) {
+            } else if (checkRowInfo2()) {
                 System.out.println("Time range not found!");
-            }
-            else {
+            } else {
                 System.out.printf("Your country is %s\nShowing %d week(s) from %s\n", location, weeks / 7, startDate);
             }
         }
@@ -297,39 +299,267 @@ public class Data {
             int days = range;
             if (days <= 0) {
                 System.out.println("Invalid number of days!");
-            }
-            else if (checkRowInfo2()) {
+            } else if (checkRowInfo2()) {
                 System.out.println("Time range not found!");
-            }
-            else {
+            } else {
                 System.out.printf("Your country is %s\nShowing %d day(s) from %s\n", location, days, startDate);
             }
         }
     }
+
     // Display the third time range case
     public void display3() {
         if (rangeChoice == 1) {
             int weeks = range * 7;
             if (range <= 0) {
                 System.out.println("Invalid number of weeks!");
-            }
-            else if (checkRowInfo3()){
+            } else if (checkRowInfo3()) {
                 System.out.println("Time range not found!");
+            } else {
+                System.out.printf("Your country is %s\nShowing %d week(s) to %s\n", location, weeks / 7, endDate);
             }
-            else {
-                System.out.printf("Your country is %s\nShowing %d week(s) to %s\n", location, weeks/7, endDate);
-            }
-        }
-        else if (rangeChoice == 2) {
+        } else if (rangeChoice == 2) {
             int days = range;
             if (days <= 0) {
                 System.out.println("Invalid number of days!");
-            }
-            else if (checkRowInfo3()){
+            } else if (checkRowInfo3()) {
                 System.out.println("Time range not found!");
-            }
-            else {
+            } else {
                 System.out.printf("Your country is %s\nShowing %d day(s) to %s\n", location, days, endDate);
+            }
+        }
+    }
+
+    public void grouping1() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Choose a grouping method: ");
+        System.out.println("1. No grouping");
+        System.out.println("2. Number of groups");
+        System.out.println("3. Number of days per group");
+
+        int groupOption = sc.nextInt();
+        switch (groupOption) {
+            case 1 -> {
+                for (int i = 0; i < addRow1().size(); i = i + 2)
+                {
+                    System.out.println(addRow1().get(i));
+                }
+            }
+            case 2 -> {
+                System.out.println("Enter number of groups: ");
+                int numGroup = sc.nextInt() ;
+                int size = addRow1().size() / 2;
+                int daysPerGroup = size / numGroup;
+                int temp = daysPerGroup;
+                int moreDays = size - daysPerGroup * numGroup;
+                int group = 1;
+
+                ArrayList<String> list = new ArrayList<>();
+
+                for (int i = 0; i < addRow1().size(); i += 2)
+                {
+                    list.add(addRow1().get(i));
+                    if (moreDays > 0) {
+                        daysPerGroup = temp + 1;
+                    } else {
+                        daysPerGroup = temp;
+                    }
+                    if (list.size() == daysPerGroup) {
+                        System.out.println("Group " + group);
+                        for (int j = 0; j < list.size();j++)
+                        {
+                            System.out.println(list.get(j));
+                        }
+                        list = new ArrayList<>();
+                        moreDays -= 1;
+                        System.out.println("\n");
+                        group += 1;
+                    }
+                }
+            }
+            case 3 -> {
+                System.out.println("Enter number of days in a group: ");
+                int daysPerGroup = sc.nextInt();
+                int group = 1;
+
+                ArrayList<String> list = new ArrayList<>();
+                for (int i = 0; i < addRow1().size(); i += 2) {
+                    list.add(addRow1().get(i));
+
+                    if (list.size() == daysPerGroup) {
+                        System.out.println("Group " + group);
+                        for (int j = 0; j < list.size();j++)
+                        {
+                            System.out.println(list.get(j));
+                        }
+                        list = new ArrayList<>();
+                        System.out.println("\n");
+                        group += 1;
+                    }
+                }
+            }
+        }
+    }
+
+    public void grouping2() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Choose a grouping method: ");
+        System.out.println("1. No grouping");
+        System.out.println("2. Number of groups");
+        System.out.println("3. Number of days per group");
+
+        int groupOption = sc.nextInt();
+        switch (groupOption) {
+            case 1 -> {
+                for (int i = 0; i < addRow2().size(); i = i + 2)
+                {
+                    System.out.println(addRow2().get(i));
+                }
+            }
+            case 2 -> {
+                System.out.println("Enter number of groups: ");
+                int numGroup = sc.nextInt() ;
+                int size = addRow2().size() / 2;
+                int daysPerGroup = size / numGroup;
+                int temp = daysPerGroup;
+                int moreDays = size - daysPerGroup * numGroup;
+                int group = 1;
+
+                ArrayList<String> list = new ArrayList<>();
+
+                for (int i = 0; i < addRow2().size(); i += 2)
+                {
+                    list.add(addRow2().get(i));
+                    if (moreDays > 0) {
+                        daysPerGroup = temp + 1;
+                    } else {
+                        daysPerGroup = temp;
+                    }
+                    if (list.size() == daysPerGroup) {
+                        System.out.println("Group " + group);
+                        for (int j = 0; j < list.size();j++)
+                        {
+                            System.out.println(list.get(j));
+                        }
+                        list = new ArrayList<>();
+                        moreDays -= 1;
+                        System.out.println("\n");
+                        group += 1;
+                    }
+                }
+            }
+            case 3 -> {
+                System.out.println("Enter number of days in a group: ");
+                int daysPerGroup = sc.nextInt();
+                int group = 1;
+
+                ArrayList<String> list = new ArrayList<>();
+                for (int i = 0; i < addRow2().size(); i += 2) {
+                    list.add(addRow2().get(i));
+
+                    if (list.size() == daysPerGroup) {
+                        System.out.println("Group " + group);
+                        for (int j = 0; j < list.size();j++)
+                        {
+                            System.out.println(list.get(j));
+                        }
+                        list = new ArrayList<>();
+                        System.out.println("\n");
+                        group += 1;
+                    }
+                }
+            }
+        }
+    }
+
+    public void grouping3() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Choose a grouping method: ");
+        System.out.println("1. No grouping");
+        System.out.println("2. Number of groups");
+        System.out.println("3. Number of days per group");
+
+        int groupOption = sc.nextInt();
+        switch (groupOption) {
+            case 1 -> {
+                for (int i = 0; i < addRow3().size(); i = i + 2)
+                {
+                    System.out.println(addRow3().get(i));
+                }
+            }
+            case 2 -> {
+                System.out.println("Enter number of groups: ");
+                int numGroup = sc.nextInt() ;
+                int size = addRow3().size() / 2;
+                int daysPerGroup = size / numGroup;
+                int temp = daysPerGroup;
+                int moreDays = size - daysPerGroup * numGroup;
+                int group = 1;
+
+                ArrayList<String> list = new ArrayList<>();
+
+                for (int i = 0; i < addRow3().size(); i += 2)
+                {
+                    list.add(addRow3().get(i));
+                    if (moreDays > 0) {
+                        daysPerGroup = temp + 1;
+                    } else {
+                        daysPerGroup = temp;
+                    }
+                    if (list.size() == daysPerGroup) {
+                        System.out.println("Group " + group);
+                        for (int j = 0; j < list.size();j++)
+                        {
+                            System.out.println(list.get(j));
+                        }
+                        list = new ArrayList<>();
+                        moreDays -= 1;
+                        System.out.println("\n");
+                        group += 1;
+                    }
+                }
+            }
+            case 3 -> {
+                System.out.println("Enter number of days in a group: ");
+                int daysPerGroup = sc.nextInt();
+                int group = 1;
+
+                ArrayList<String> list = new ArrayList<>();
+                for (int i = 0; i < addRow3().size(); i += 2) {
+                    list.add(addRow2().get(i));
+
+                    if (list.size() == daysPerGroup) {
+                        System.out.println("Group " + group);
+                        for (int j = 0; j < list.size();j++)
+                        {
+                            System.out.println(list.get(j));
+                        }
+                        list = new ArrayList<>();
+                        System.out.println("\n");
+                        group += 1;
+                    }
+                }
+            }
+        }
+    }
+
+    public void metric() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Choose a metric: ");
+        System.out.println("1. Positive Cases");
+        System.out.println("2. Deaths");
+        System.out.println("3. People Vaccinated");
+
+        int metricOption = sc.nextInt();
+        switch (metricOption) {
+            case 1 -> {
+                System.out.println("Hello World");
+            }
+            case 2 -> {
+                System.out.println("Hello Guys");
+            }
+            case 3 -> {
+                System.out.println("Hello");
             }
         }
     }
