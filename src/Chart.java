@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.*;
+
 public class Chart {
     public static void chart() {
         int ver = 24;
@@ -34,7 +36,31 @@ public class Chart {
         }
     }
 
-    public static void main (String[] args) {
-        chart();
+    public static void display() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Choose a display option: ");
+        System.out.println("1. Tabular");
+        System.out.println("2. Chart");
+
+        int option = sc.nextInt();
+
+        switch(option) {
+            case 1 -> {
+                com.company.Tabular st = new com.company.Tabular();
+                st.setShowVerticalLines(true);
+                st.setHeaders("Range", "Value");
+                st.addRow("", "");
+                st.addRow("", "");
+                st.addRow("", "");
+                st.print();
+            }
+            case 2 -> {
+                chart();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        display();
     }
 }
