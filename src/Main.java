@@ -1,4 +1,7 @@
+package com.company;
+
 import java.util.*;
+import com.company.Summary;
 
 public class Main {
     public static void main(String[] args) {
@@ -41,7 +44,7 @@ public class Main {
                                 isRunning = true;
                             }
                             else if (option == 2) {
-                                System.exit(0);
+                                 System.exit(0);
                             }
                         }
                     }
@@ -52,7 +55,8 @@ public class Main {
                     System.out.println("****************************************************");
                     d1.display1();
                     System.out.println("****************************************************\n");
-                    System.out.println(d1.addRow1());
+                    d1.grouping1();
+                    d1.metric();
                 }
                 // option 2: This option shows the time range as a number of weeks/days from a particular date
                 case "2" -> {
@@ -62,7 +66,8 @@ public class Main {
                     System.out.println("*******************************************************************");
                     d2.display2();
                     System.out.println("*******************************************************************\n");
-                    System.out.println(d2.addRow2());
+                    d2.grouping2();
+                    d2.metric();
                 }
                 // option 3: This option shows the time range as a number of weeks/days to a particular date
                 case "3" -> {
@@ -72,9 +77,10 @@ public class Main {
                     System.out.println("*******************************************************************");
                     d3.display3();
                     System.out.println("*******************************************************************\n");
-                    System.out.println(d3.addRow3());
+                    d3.grouping3();
+                    d3.metric();
                 }
-                // default case: This option handles all the instances where a user enters an invalid option (not 0 or 1-3) 
+                // default case: This option handles all the instances where a user enters an invalid option (not 0 or 1-3)
                 default -> {
                     // Setting a boolean variable to track the default option
                     boolean isInvalid = true;
@@ -113,7 +119,8 @@ public class Main {
                                 System.out.println("****************************************************");
                                 d4.display1();
                                 System.out.println("****************************************************\n");
-                                System.out.println(d4.addRow1());
+                                d4.grouping1();
+                                d4.metric();
                                 isInvalid = false;
                             }
                             case "2" -> {
@@ -123,7 +130,8 @@ public class Main {
                                 System.out.println("*******************************************************************");
                                 d5.display2();
                                 System.out.println("*******************************************************************\n");
-                                System.out.println(d5.addRow2());
+                                d5.grouping2();
+                                d5.metric();
                                 isInvalid = false;
                             }
                             case "3" -> {
@@ -133,7 +141,8 @@ public class Main {
                                 System.out.println("*******************************************************************");
                                 d6.display3();
                                 System.out.println("*******************************************************************\n");
-                                System.out.println(d6.addRow3());
+                                d6.grouping3();
+                                d6.metric();
                                 isInvalid = false;
                             }
                         }
