@@ -57,6 +57,8 @@ public class Main {
                     System.out.println("****************************************************\n");
                     d1.grouping1();
                     d1.metric();
+                    Chart.display();
+
                 }
                 // option 2: This option shows the time range as a number of weeks/days from a particular date
                 case "2" -> {
@@ -68,6 +70,7 @@ public class Main {
                     System.out.println("*******************************************************************\n");
                     d2.grouping2();
                     d2.metric();
+                    Chart.display();
                 }
                 // option 3: This option shows the time range as a number of weeks/days to a particular date
                 case "3" -> {
@@ -79,6 +82,7 @@ public class Main {
                     System.out.println("*******************************************************************\n");
                     d3.grouping3();
                     d3.metric();
+                    Chart.display();
                 }
                 // default case: This option handles all the instances where a user enters an invalid option (not 0 or 1-3)
                 default -> {
@@ -121,6 +125,7 @@ public class Main {
                                 System.out.println("****************************************************\n");
                                 d4.grouping1();
                                 d4.metric();
+                                Chart.display();
                                 isInvalid = false;
                             }
                             case "2" -> {
@@ -132,6 +137,7 @@ public class Main {
                                 System.out.println("*******************************************************************\n");
                                 d5.grouping2();
                                 d5.metric();
+                                Chart.display();
                                 isInvalid = false;
                             }
                             case "3" -> {
@@ -143,6 +149,7 @@ public class Main {
                                 System.out.println("*******************************************************************\n");
                                 d6.grouping3();
                                 d6.metric();
+                                Chart.display();
                                 isInvalid = false;
                             }
                         }
@@ -151,4 +158,5 @@ public class Main {
             }
         }
     }
+
 }
