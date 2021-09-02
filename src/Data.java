@@ -2,8 +2,6 @@ package com.company;
 
 import java.io.*;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Data {
     // Initializing private variables for future usage
