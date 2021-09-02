@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 public class Summary extends Data{
 
@@ -48,7 +46,7 @@ public class Summary extends Data{
         this.newVaccinated = newVaccinated;
     }
 
-    public void grouping() {
+    public void grouping1() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Choose a grouping method: ");
         System.out.println("1. No grouping");
@@ -58,31 +56,205 @@ public class Summary extends Data{
         int groupOption = sc.nextInt();
         switch (groupOption) {
             case 1 -> {
-                System.out.println(addRow2());
+                for (int i = 0; i < addRow1().size(); i = i + 2)
+                {
+                    System.out.println(addRow1().get(i));
+                }
             }
             case 2 -> {
                 System.out.println("Enter number of groups: ");
-                int chunkSize = sc.nextInt() ;
+                int numGroup = sc.nextInt() ;
+                int size = addRow1().size() / 2;
+                int daysPerGroup = size / numGroup;
+                int temp = daysPerGroup;
+                int moreDays = size - daysPerGroup * numGroup;
+                int group = 1;
 
-                List<String> list = new ArrayList(addRow2());
+                ArrayList<String> list = new ArrayList<>();
 
-                AtomicInteger counter = new AtomicInteger();
-                final Collection<List<String>> partitionedList =
-                        list.stream().collect(Collectors.groupingBy(i -> counter.getAndIncrement() / chunkSize))
-                                .values();
-                for(List<String> subList : partitionedList) {
-                    System.out.println(subList);
+                for (int i = 0; i < addRow1().size(); i += 2)
+                {
+                    list.add(addRow1().get(i));
+                    if (moreDays > 0) {
+                        daysPerGroup = temp + 1;
+                    } else {
+                        daysPerGroup = temp;
+                    }
+                    if (list.size() == daysPerGroup) {
+                        System.out.println("Group " + group);
+                        for (int j = 0; j < list.size();j++)
+                        {
+                            System.out.println(list.get(j));
+                        }
+                        list = new ArrayList<>();
+                        moreDays -= 1;
+                        System.out.println("\n");
+                        group += 1;
+                    }
                 }
             }
             case 3 -> {
                 System.out.println("Enter number of days in a group: ");
-                int groupNum = sc.nextInt();
+                int daysPerGroup = sc.nextInt();
+                int group = 1;
 
-                ArrayList<Data> newGroup = new ArrayList<>();
+                ArrayList<String> list = new ArrayList<>();
+                for (int i = 0; i < addRow1().size(); i += 2) {
+                    list.add(addRow1().get(i));
 
-                //for (int i = 0; i < TOTAL DAYS; i++;)
-                // group.add
+                    if (list.size() == daysPerGroup) {
+                        System.out.println("Group " + group);
+                        for (int j = 0; j < list.size();j++)
+                        {
+                            System.out.println(list.get(j));
+                        }
+                        list = new ArrayList<>();
+                        System.out.println("\n");
+                        group += 1;
+                    }
+                }
+            }
+        }
+    }
 
+    public void grouping2() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Choose a grouping method: ");
+        System.out.println("1. No grouping");
+        System.out.println("2. Number of groups");
+        System.out.println("3. Number of days per group");
+
+        int groupOption = sc.nextInt();
+        switch (groupOption) {
+            case 1 -> {
+                for (int i = 0; i < addRow2().size(); i = i + 2)
+                {
+                    System.out.println(addRow2().get(i));
+                }
+            }
+            case 2 -> {
+                System.out.println("Enter number of groups: ");
+                int numGroup = sc.nextInt() ;
+                int size = addRow2().size() / 2;
+                int daysPerGroup = size / numGroup;
+                int temp = daysPerGroup;
+                int moreDays = size - daysPerGroup * numGroup;
+                int group = 1;
+
+                ArrayList<String> list = new ArrayList<>();
+
+                for (int i = 0; i < addRow2().size(); i += 2)
+                {
+                    list.add(addRow2().get(i));
+                    if (moreDays > 0) {
+                        daysPerGroup = temp + 1;
+                    } else {
+                        daysPerGroup = temp;
+                    }
+                    if (list.size() == daysPerGroup) {
+                        System.out.println("Group " + group);
+                        for (int j = 0; j < list.size();j++)
+                        {
+                            System.out.println(list.get(j));
+                        }
+                        list = new ArrayList<>();
+                        moreDays -= 1;
+                        System.out.println("\n");
+                        group += 1;
+                    }
+                }
+            }
+            case 3 -> {
+                System.out.println("Enter number of days in a group: ");
+                int daysPerGroup = sc.nextInt();
+                int group = 1;
+
+                ArrayList<String> list = new ArrayList<>();
+                for (int i = 0; i < addRow2().size(); i += 2) {
+                    list.add(addRow2().get(i));
+
+                    if (list.size() == daysPerGroup) {
+                        System.out.println("Group " + group);
+                        for (int j = 0; j < list.size();j++)
+                        {
+                            System.out.println(list.get(j));
+                        }
+                        list = new ArrayList<>();
+                        System.out.println("\n");
+                        group += 1;
+                    }
+                }
+            }
+        }
+    }
+
+    public void grouping3() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Choose a grouping method: ");
+        System.out.println("1. No grouping");
+        System.out.println("2. Number of groups");
+        System.out.println("3. Number of days per group");
+
+        int groupOption = sc.nextInt();
+        switch (groupOption) {
+            case 1 -> {
+                for (int i = 0; i < addRow3().size(); i = i + 2)
+                {
+                    System.out.println(addRow3().get(i));
+                }
+            }
+            case 2 -> {
+                System.out.println("Enter number of groups: ");
+                int numGroup = sc.nextInt() ;
+                int size = addRow3().size() / 2;
+                int daysPerGroup = size / numGroup;
+                int temp = daysPerGroup;
+                int moreDays = size - daysPerGroup * numGroup;
+                int group = 1;
+
+                ArrayList<String> list = new ArrayList<>();
+
+                for (int i = 0; i < addRow3().size(); i += 2)
+                {
+                    list.add(addRow3().get(i));
+                    if (moreDays > 0) {
+                        daysPerGroup = temp + 1;
+                    } else {
+                        daysPerGroup = temp;
+                    }
+                    if (list.size() == daysPerGroup) {
+                        System.out.println("Group " + group);
+                        for (int j = 0; j < list.size();j++)
+                        {
+                            System.out.println(list.get(j));
+                        }
+                        list = new ArrayList<>();
+                        moreDays -= 1;
+                        System.out.println("\n");
+                        group += 1;
+                    }
+                }
+            }
+            case 3 -> {
+                System.out.println("Enter number of days in a group: ");
+                int daysPerGroup = sc.nextInt();
+                int group = 1;
+
+                ArrayList<String> list = new ArrayList<>();
+                for (int i = 0; i < addRow3().size(); i += 2) {
+                    list.add(addRow2().get(i));
+
+                    if (list.size() == daysPerGroup) {
+                        System.out.println("Group " + group);
+                        for (int j = 0; j < list.size();j++)
+                        {
+                            System.out.println(list.get(j));
+                        }
+                        list = new ArrayList<>();
+                        System.out.println("\n");
+                        group += 1;
+                    }
+                }
             }
         }
     }
@@ -97,13 +269,13 @@ public class Summary extends Data{
         int metricOption = sc.nextInt();
         switch (metricOption) {
             case 1 -> {
-
+                System.out.println("Hello World");
             }
             case 2 -> {
-
+                System.out.println("Hello Guys");
             }
             case 3 -> {
-
+                System.out.println("Hello");
             }
         }
     }
