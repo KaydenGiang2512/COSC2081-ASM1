@@ -67,26 +67,4 @@ public class Tabular {
         }
         System.out.println();
     }
-
-    private void printRow(String[] cells, int[] maxWidths) {
-        for (int i = 0; i < cells.length; i++) {
-            String s = cells[i];
-            String verStrTemp = i == cells.length - 1 ? verticalSep : "";
-            if (rightAlign) {
-                System.out.printf("%s %" + maxWidths[i] + "s %s", verticalSep, s, verStrTemp);
-            } else {
-                System.out.printf("%s %-" + maxWidths[i] + "s %s", verticalSep, s, verStrTemp);
-            }
-        }
-        System.out.println();
-    }
-    public static void main(String[] args) {
-        Tabular st = new Tabular();
-        st.setShowVerticalLines(true);
-        st.setHeaders("Range", "Value");
-        st.addRow("", "");
-        st.addRow("", "");
-        st.addRow("", "");
-        st.print();
-    }
 }
