@@ -97,7 +97,7 @@ public class Data {
             while (sc.hasNextLine()) {
                 String row = sc.nextLine();
                 String[] values = row.split(",");
-                for (int i = 0; i < values.length - 1; i++) {
+                for (int i = 0; i < values.length; i++) {
                     if (values[2].equals(getLocation()) && values[3].equals(getStartDate())) {
                         return row;
                     }
@@ -117,7 +117,7 @@ public class Data {
             while (sc.hasNextLine()) {
                 String row = sc.nextLine();
                 String[] values = row.split(",");
-                for (int i = 0; i < values.length - 1; i++) {
+                for (int i = 0; i < values.length; i++) {
                     if (values[2].equals(getLocation()) && values[3].equals(getEndDate())) {
                         return row;
                     }
@@ -134,7 +134,7 @@ public class Data {
         int fromIndex = getAllRows().indexOf(getStartRow());
         int toIndex = getAllRows().indexOf(getStopRow());
         ArrayList<String> result = new ArrayList<>();
-        for (int i = fromIndex; i <= toIndex - 1; i++) {
+        for (int i = fromIndex; i <= toIndex; i++) {
             result.add(getAllRows().get(i));
             result.add("\n");
         }
@@ -172,7 +172,7 @@ public class Data {
             if (checkRowInfo3()) {
                 System.out.println("Time range not found");
             } else {
-                for (int i = toIndex - range; i <= toIndex - 1; i++) {
+                for (int i = toIndex - range + 1; i <= toIndex; i++) {
                     result.add(getAllRows().get(i));
                     result.add("\n");
                 }
@@ -328,7 +328,43 @@ public class Data {
         }
     }
 
-    public void grouping1() {
+    //Get the index column for case 1
+    public static String[] getColumn1(Data data, int columnIndex) {
+        String[] columns;
+        ArrayList<String> rows = data.addRow1();
+        String[] values = new String[rows.size()];
+        for (int i = 0; i < rows.size(); i += 2) {
+            columns = rows.get(i).split(",");
+            values[i] = columnIndex < columns.length ? columns[columnIndex] : "0";
+        }
+        return values;
+    }
+
+    //Get the index column for case 2
+    public static String[] getColumn2(Data data, int columnIndex) {
+        String[] columns;
+        ArrayList<String> rows = data.addRow2();
+        String[] values = new String[rows.size()];
+        for (int i = 0; i < rows.size(); i += 2) {
+            columns = rows.get(i).split(",");
+            values[i] = columnIndex < columns.length ? columns[columnIndex] : "0";
+        }
+        return values;
+    }
+    //Get the index column for case 1
+    public static String[] getColumn3(Data data, int columnIndex) {
+        String[] columns;
+        ArrayList<String> rows = data.addRow3();
+        String[] values = new String[rows.size()];
+        for (int i = 0; i < rows.size(); i += 2) {
+            columns = rows.get(i).split(",");
+            values[i] = columnIndex < columns.length ? columns[columnIndex] : "0";
+        }
+        return values;
+    }
+
+    //Grouping methods for case 1
+    public void grouping1(Data data) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Choose a grouping method: ");
         System.out.println("1. No grouping");
@@ -338,9 +374,17 @@ public class Data {
         int groupOption = sc.nextInt();
         switch (groupOption) {
             case 1 -> {
-                for (int i = 0; i < addRow1().size(); i = i + 2)
-                {
-                    System.out.println(addRow1().get(i));
+                String[] temp = getColumn1(data, 3);
+                List<String> stringList = new ArrayList<String>(Arrays.asList(temp)); //Convert String[] into ArrayList
+                List<String> methodList = data.metric1(data);
+
+                ArrayList<String> array = new ArrayList<String>();
+
+                for (int i = 0; i < stringList.size(); i += 2) {
+                    array.add(stringList.get(i));
+                    array.add(methodList.get(i));
+                    System.out.println(array);
+                    array = new ArrayList<String>();
                 }
             }
             case 2 -> {
@@ -348,58 +392,97 @@ public class Data {
                 int numGroup = sc.nextInt() ;
                 int size = addRow1().size() / 2;
                 int daysPerGroup = size / numGroup;
-                int temp = daysPerGroup;
+                int index = daysPerGroup;
                 int moreDays = size - daysPerGroup * numGroup;
-                int group = 1;
+
+                String[] temp = getColumn1(data, 3);
+                List<String> stringList = new ArrayList<String>(Arrays.asList(temp)); //Convert String[] into ArrayList
+                List<String> methodList = data.metric1(data);
 
                 ArrayList<String> list = new ArrayList<>();
+                ArrayList<String> array = new ArrayList<String>();
 
-                for (int i = 0; i < addRow1().size(); i += 2)
+                for (int i = 0; i < stringList.size(); i += 2)
                 {
-                    list.add(addRow1().get(i));
+                    list.add(stringList.get(i));
+                    array.add(stringList.get(i));
+                    array.add(methodList.get(i));
+                    System.out.println(array);
+                    array.remove(0);
+                    array.remove(0);
                     if (moreDays > 0) {
-                        daysPerGroup = temp + 1;
+                        daysPerGroup = index + 1;
                     } else {
-                        daysPerGroup = temp;
+                        daysPerGroup = index;
                     }
                     if (list.size() == daysPerGroup) {
-                        System.out.println("Group " + group);
-                        for (int j = 0; j < list.size();j++)
+                        System.out.println("-----------------");
+
+                        for (int j = 0; j < array.size();j++)
                         {
-                            System.out.println(list.get(j));
+                            list.get(j);
                         }
                         list = new ArrayList<>();
                         moreDays -= 1;
                         System.out.println("\n");
-                        group += 1;
                     }
                 }
             }
             case 3 -> {
+                String[] temp = getColumn1(data, 3);
+                List<String> stringList = new ArrayList<String>(Arrays.asList(temp)); //Convert String[] into ArrayList
+                int listSize = stringList.size() / 2;
+
                 System.out.println("Enter number of days in a group: ");
                 int daysPerGroup = sc.nextInt();
-                int group = 1;
+
+                //To make sure that the number of days input is divided my the size of data.
+                while (listSize % daysPerGroup != 0) {
+                    System.out.println("Cannot divide the groups equally.");
+                    System.out.print("Please enter another number: ");
+                    daysPerGroup = sc.nextInt();
+                }
+
+                int size = addRow1().size() / 2;
+                int numGroup = size / daysPerGroup;
+                int index = daysPerGroup;
+                int moreDays = size - numGroup * daysPerGroup;
+
+                List<String> methodList = data.metric1(data);
 
                 ArrayList<String> list = new ArrayList<>();
-                for (int i = 0; i < addRow1().size(); i += 2) {
-                    list.add(addRow1().get(i));
+                ArrayList<String> array = new ArrayList<String>();
+                for (int i = 0; i < stringList.size(); i += 2)
+                {
+                    list.add(stringList.get(i));
+                    array.add(stringList.get(i));
+                    array.add(methodList.get(i));
+                    System.out.println(array);
+                    array.remove(0);
+                    array.remove(0);
+                    if (moreDays > 0) {
+                        numGroup = index + 1;
+                    } else {
+                        numGroup = index;
+                    }
+                    if (list.size() == numGroup) {
+                        System.out.println("-----------------");
 
-                    if (list.size() == daysPerGroup) {
-                        System.out.println("Group " + group);
-                        for (int j = 0; j < list.size();j++)
+                        for (int j = 0; j < array.size();j++)
                         {
-                            System.out.println(list.get(j));
+                            list.get(j);
                         }
                         list = new ArrayList<>();
+                        moreDays -= 1;
                         System.out.println("\n");
-                        group += 1;
                     }
                 }
             }
         }
     }
 
-    public void grouping2() {
+    //Grouping methods for case 2
+    public void grouping2(Data data) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Choose a grouping method: ");
         System.out.println("1. No grouping");
@@ -409,9 +492,17 @@ public class Data {
         int groupOption = sc.nextInt();
         switch (groupOption) {
             case 1 -> {
-                for (int i = 0; i < addRow2().size(); i = i + 2)
-                {
-                    System.out.println(addRow2().get(i));
+                String[] temp = getColumn2(data, 3);
+                List<String> stringList = new ArrayList<String>(Arrays.asList(temp)); //Convert String[] into ArrayList
+                List<String> methodList = data.metric2(data);
+
+                ArrayList<String> array = new ArrayList<String>();
+
+                for (int i = 0; i < stringList.size(); i += 2) {
+                    array.add(stringList.get(i));
+                    array.add(methodList.get(i));
+                    System.out.println(array);
+                    array = new ArrayList<String>();
                 }
             }
             case 2 -> {
@@ -419,58 +510,98 @@ public class Data {
                 int numGroup = sc.nextInt() ;
                 int size = addRow2().size() / 2;
                 int daysPerGroup = size / numGroup;
-                int temp = daysPerGroup;
+                int index = daysPerGroup;
                 int moreDays = size - daysPerGroup * numGroup;
-                int group = 1;
+
+                String[] temp = getColumn2(data, 3);
+                List<String> stringList = new ArrayList<String>(Arrays.asList(temp)); //Convert String[] into ArrayList
+                List<String> methodList = data.metric2(data);
 
                 ArrayList<String> list = new ArrayList<>();
+                ArrayList<String> array = new ArrayList<String>();
 
-                for (int i = 0; i < addRow2().size(); i += 2)
+                for (int i = 0; i < stringList.size(); i += 2)
                 {
-                    list.add(addRow2().get(i));
+                    list.add(stringList.get(i));
+                    array.add(stringList.get(i));
+                    array.add(methodList.get(i));
+                    System.out.println(array);
+                    array.remove(0);
+                    array.remove(0);
                     if (moreDays > 0) {
-                        daysPerGroup = temp + 1;
+                        daysPerGroup = index + 1;
                     } else {
-                        daysPerGroup = temp;
+                        daysPerGroup = index;
                     }
                     if (list.size() == daysPerGroup) {
-                        System.out.println("Group " + group);
-                        for (int j = 0; j < list.size();j++)
+                        System.out.println("-----------------");
+
+                        for (int j = 0; j < array.size();j++)
                         {
-                            System.out.println(list.get(j));
+                            list.get(j);
                         }
                         list = new ArrayList<>();
                         moreDays -= 1;
                         System.out.println("\n");
-                        group += 1;
                     }
                 }
             }
             case 3 -> {
+                String[] temp = getColumn2(data, 3);
+                List<String> stringList = new ArrayList<String>(Arrays.asList(temp)); //Convert String[] into ArrayList
+                int listSize = stringList.size() / 2;
+
                 System.out.println("Enter number of days in a group: ");
                 int daysPerGroup = sc.nextInt();
-                int group = 1;
+
+                //To make sure that the number of days input is divided my the size of data.
+                while (listSize % daysPerGroup != 0) {
+                    System.out.println("Cannot divide the groups equally.");
+                    System.out.print("Please enter another number: ");
+                    daysPerGroup = sc.nextInt();
+                }
+
+                int size = addRow2().size() / 2;
+                int numGroup = size / daysPerGroup;
+                int index = daysPerGroup;
+                int moreDays = size - numGroup * daysPerGroup;
+
+                List<String> methodList = data.metric2(data);
 
                 ArrayList<String> list = new ArrayList<>();
-                for (int i = 0; i < addRow2().size(); i += 2) {
-                    list.add(addRow2().get(i));
+                ArrayList<String> array = new ArrayList<String>();
+                for (int i = 0; i < stringList.size(); i += 2)
+                {
+                    list.add(stringList.get(i));
+                    array.add(stringList.get(i));
+                    array.add(methodList.get(i));
+                    System.out.println(array);
+                    array.remove(0);
+                    array.remove(0);
+                    if (moreDays > 0) {
+                        numGroup = index + 1;
+                    } else {
+                        numGroup = index;
+                    }
+                    if (list.size() == numGroup) {
+                        System.out.println("-----------------");
 
-                    if (list.size() == daysPerGroup) {
-                        System.out.println("Group " + group);
-                        for (int j = 0; j < list.size();j++)
+                        for (int j = 0; j < array.size();j++)
                         {
-                            System.out.println(list.get(j));
+                            list.get(j);
                         }
                         list = new ArrayList<>();
+                        moreDays -= 1;
                         System.out.println("\n");
-                        group += 1;
                     }
                 }
             }
         }
     }
 
-    public void grouping3() {
+
+    //Grouping methods for case 3
+    public void grouping3(Data data) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Choose a grouping method: ");
         System.out.println("1. No grouping");
@@ -480,9 +611,17 @@ public class Data {
         int groupOption = sc.nextInt();
         switch (groupOption) {
             case 1 -> {
-                for (int i = 0; i < addRow3().size(); i = i + 2)
-                {
-                    System.out.println(addRow3().get(i));
+                String[] temp = getColumn3(data, 3);
+                List<String> stringList = new ArrayList<String>(Arrays.asList(temp)); //Convert String[] into ArrayList
+                List<String> methodList = data.metric3(data);
+
+                ArrayList<String> array = new ArrayList<String>();
+
+                for (int i = 0; i < stringList.size(); i += 2) {
+                    array.add(stringList.get(i));
+                    array.add(methodList.get(i));
+                    System.out.println(array);
+                    array = new ArrayList<String>();
                 }
             }
             case 2 -> {
@@ -490,75 +629,182 @@ public class Data {
                 int numGroup = sc.nextInt() ;
                 int size = addRow3().size() / 2;
                 int daysPerGroup = size / numGroup;
-                int temp = daysPerGroup;
+                int index = daysPerGroup;
                 int moreDays = size - daysPerGroup * numGroup;
-                int group = 1;
+
+                String[] temp = getColumn3(data, 3);
+                List<String> stringList = new ArrayList<String>(Arrays.asList(temp)); //Convert String[] into ArrayList
+                List<String> methodList = data.metric3(data);
 
                 ArrayList<String> list = new ArrayList<>();
+                ArrayList<String> array = new ArrayList<String>();
 
-                for (int i = 0; i < addRow3().size(); i += 2)
+                for (int i = 0; i < stringList.size(); i += 2)
                 {
-                    list.add(addRow3().get(i));
+                    list.add(stringList.get(i));
+                    array.add(stringList.get(i));
+                    array.add(methodList.get(i));
+                    System.out.println(array);
+                    array.remove(0);
+                    array.remove(0);
                     if (moreDays > 0) {
-                        daysPerGroup = temp + 1;
+                        daysPerGroup = index + 1;
                     } else {
-                        daysPerGroup = temp;
+                        daysPerGroup = index;
                     }
                     if (list.size() == daysPerGroup) {
-                        System.out.println("Group " + group);
-                        for (int j = 0; j < list.size();j++)
+                        System.out.println("-----------------");
+
+                        for (int j = 0; j < array.size();j++)
                         {
-                            System.out.println(list.get(j));
+                            list.get(j);
                         }
                         list = new ArrayList<>();
                         moreDays -= 1;
                         System.out.println("\n");
-                        group += 1;
                     }
                 }
             }
             case 3 -> {
+                String[] temp = getColumn3(data, 3);
+                List<String> stringList = new ArrayList<String>(Arrays.asList(temp)); //Convert String[] into ArrayList
+                int listSize = stringList.size() / 2;
+
                 System.out.println("Enter number of days in a group: ");
                 int daysPerGroup = sc.nextInt();
-                int group = 1;
+
+                //To make sure that the number of days input is divided my the size of data.
+                while (listSize % daysPerGroup != 0) {
+                    System.out.println("Cannot divide the groups equally.");
+                    System.out.print("Please enter another number: ");
+                    daysPerGroup = sc.nextInt();
+                }
+
+                int size = addRow3().size() / 2;
+                int numGroup = size / daysPerGroup;
+                int index = daysPerGroup;
+                int moreDays = size - numGroup * daysPerGroup;
+
+                List<String> methodList = data.metric3(data);
 
                 ArrayList<String> list = new ArrayList<>();
-                for (int i = 0; i < addRow3().size(); i += 2) {
-                    list.add(addRow2().get(i));
+                ArrayList<String> array = new ArrayList<String>();
+                for (int i = 0; i < stringList.size(); i += 2)
+                {
+                    list.add(stringList.get(i));
+                    array.add(stringList.get(i));
+                    array.add(methodList.get(i));
+                    System.out.println(array);
+                    array.remove(0);
+                    array.remove(0);
+                    if (moreDays > 0) {
+                        numGroup = index + 1;
+                    } else {
+                        numGroup = index;
+                    }
+                    if (list.size() == numGroup) {
+                        System.out.println("-----------------");
 
-                    if (list.size() == daysPerGroup) {
-                        System.out.println("Group " + group);
-                        for (int j = 0; j < list.size();j++)
+                        for (int j = 0; j < array.size();j++)
                         {
-                            System.out.println(list.get(j));
+                            list.get(j);
                         }
                         list = new ArrayList<>();
+                        moreDays -= 1;
                         System.out.println("\n");
-                        group += 1;
                     }
                 }
             }
         }
     }
 
-    public void metric() {
+    //Metric for case 1
+    public List<String> metric1(Data data) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Choose a metric: ");
         System.out.println("1. Positive Cases");
         System.out.println("2. Deaths");
         System.out.println("3. People Vaccinated");
-
+        List<String> method = null;
         int metricOption = sc.nextInt();
         switch (metricOption) {
             case 1 -> {
-                System.out.println("Hello World");
+                System.out.println("Positive Cases: ");
+                String[] temp = getColumn1(data, 4);
+                method = new ArrayList<String>(Arrays.asList(temp)); //Convert String[] into ArrayList
+
             }
             case 2 -> {
-                System.out.println("Hello Guys");
+                System.out.println("Deaths: ");
+                String[] temp = getColumn1(data, 5);
+                method = new ArrayList<String>(Arrays.asList(temp)); //Convert String[] into ArrayList
             }
             case 3 -> {
-                System.out.println("Hello");
+                System.out.println("People Vaccinated: ");
+                String[] temp = getColumn1(data, 6);
+                method = new ArrayList<String>(Arrays.asList(temp)); //Convert String[] into ArrayList
             }
         }
+        return method;
+    }
+
+    //Metric for case 2
+    public List<String> metric2(Data data) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Choose a metric: ");
+        System.out.println("1. Positive Cases");
+        System.out.println("2. Deaths");
+        System.out.println("3. People Vaccinated");
+        List<String> method = null;
+        int metricOption = sc.nextInt();
+        switch (metricOption) {
+            case 1 -> {
+                System.out.println("Positive Cases: ");
+                String[] temp = getColumn2(data, 4);
+                method = new ArrayList<String>(Arrays.asList(temp)); //Convert String[] into ArrayList
+
+            }
+            case 2 -> {
+                System.out.println("Deaths: ");
+                String[] temp = getColumn2(data, 5);
+                method = new ArrayList<String>(Arrays.asList(temp)); //Convert String[] into ArrayList
+            }
+            case 3 -> {
+                System.out.println("People Vaccinated: ");
+                String[] temp = getColumn2(data, 6);
+                method = new ArrayList<String>(Arrays.asList(temp)); //Convert String[] into ArrayList
+            }
+        }
+        return method;
+    }
+
+    //Metric for case 3
+    public List<String> metric3(Data data) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Choose a metric: ");
+        System.out.println("1. Positive Cases");
+        System.out.println("2. Deaths");
+        System.out.println("3. People Vaccinated");
+        List<String> method = null;
+        int metricOption = sc.nextInt();
+        switch (metricOption) {
+            case 1 -> {
+                System.out.println("Positive Cases: ");
+                String[] temp = getColumn3(data, 4);
+                method = new ArrayList<String>(Arrays.asList(temp)); //Convert String[] into ArrayList
+
+            }
+            case 2 -> {
+                System.out.println("Deaths: ");
+                String[] temp = getColumn3(data, 5);
+                method = new ArrayList<String>(Arrays.asList(temp)); //Convert String[] into ArrayList
+            }
+            case 3 -> {
+                System.out.println("People Vaccinated: ");
+                String[] temp = getColumn3(data, 6);
+                method = new ArrayList<String>(Arrays.asList(temp)); //Convert String[] into ArrayList
+            }
+        }
+        return method;
     }
 }
