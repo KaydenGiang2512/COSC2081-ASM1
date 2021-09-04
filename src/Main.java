@@ -44,7 +44,7 @@ public class Main {
                                 isRunning = true;
                             }
                             else if (option == 2) {
-                                 System.exit(0);
+                                System.exit(0);
                             }
                         }
                     }
@@ -52,33 +52,39 @@ public class Main {
                 // option 1: This option shows the time range as a pair of start date and end date
                 case "1" -> {
                     Data d1 = Data.create1();
+                    Summary s1 = new Summary();
+                    s1.Convert(d1);
                     System.out.println("****************************************************");
-                    d1.display1();
+                    s1.display1();
                     System.out.println("****************************************************\n");
-                    d1.grouping1(d1);
-                    Chart.display();
+                    s1.grouping1(s1);
+                    Display.display();
                 }
                 // option 2: This option shows the time range as a number of weeks/days from a particular date
                 case "2" -> {
                     Data d2 = Data.create2();
+                    Summary s2 = new Summary();
+                    s2.Convert(d2);
                     System.out.println("*******************************************************************");
-                    d2.inputRange();
+                    s2.inputRange();
                     System.out.println("*******************************************************************");
-                    d2.display2();
+                    s2.display2();
                     System.out.println("*******************************************************************\n");
-                    d2.grouping2(d2);
-                    Chart.display();
+                    s2.grouping2(s2);
+                    Display.display();
                 }
                 // option 3: This option shows the time range as a number of weeks/days to a particular date
                 case "3" -> {
                     Data d3 = Data.create3();
+                    Summary s3 = new Summary();
+                    s3.Convert(d3);
                     System.out.println("*******************************************************************");
-                    d3.inputRange();
+                    s3.inputRange();
                     System.out.println("*******************************************************************");
-                    d3.display3();
+                    s3.display3();
                     System.out.println("*******************************************************************\n");
-                    d3.grouping3(d3);
-                    Chart.display();
+                    s3.grouping3(s3);
+                    Display.display();
                 }
                 // default case: This option handles all the instances where a user enters an invalid option (not 0 or 1-3)
                 default -> {
@@ -115,34 +121,40 @@ public class Main {
                                 }
                             }
                             case "1" -> {
-                                Data d4 = Data.create1();
+                                Data d1 = Data.create1();
+                                Summary s1 = new Summary();
+                                s1.Convert(d1);
                                 System.out.println("****************************************************");
-                                d4.display1();
+                                s1.display1();
                                 System.out.println("****************************************************\n");
-                                d4.grouping1(d4);
-                                Chart.display();
+                                s1.grouping1(s1);
+                                Display.display();
                                 isInvalid = false;
                             }
                             case "2" -> {
-                                Data d5 = Data.create2();
+                                Data d2 = Data.create2();
+                                Summary s2 = new Summary();
+                                s2.Convert(d2);
                                 System.out.println("*******************************************************************");
-                                d5.inputRange();
+                                s2.inputRange();
                                 System.out.println("*******************************************************************");
-                                d5.display2();
+                                s2.display2();
                                 System.out.println("*******************************************************************\n");
-                                d5.grouping2(d5);
-                                Chart.display();
+                                s2.grouping2(s2);
+                                Display.display();
                                 isInvalid = false;
                             }
                             case "3" -> {
-                                Data d6 = Data.create3();
+                                Data d3 = Data.create3();
+                                Summary s3 = new Summary();
+                                s3.Convert(d3);
                                 System.out.println("*******************************************************************");
-                                d6.inputRange();
+                                s3.inputRange();
                                 System.out.println("*******************************************************************");
-                                d6.display3();
+                                s3.display3();
                                 System.out.println("*******************************************************************\n");
-                                d6.grouping3(d6);
-                                Chart.display();
+                                s3.grouping3(s3);
+                                Display.display();
                                 isInvalid = false;
                             }
                         }
