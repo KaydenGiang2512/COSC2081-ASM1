@@ -1,7 +1,6 @@
 package com.company;
 
 import java.util.*;
-import com.company.Summary;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,6 +21,7 @@ public class Main {
             Scanner sc = new Scanner(System.in);
             System.out.print("Please select an option 1-3: ");
             String time_range = sc.nextLine();
+
 
             //Creating an advanced switch case to handle the different user input possibilities
             switch (time_range) {
@@ -55,10 +55,8 @@ public class Main {
                     System.out.println("****************************************************");
                     d1.display1();
                     System.out.println("****************************************************\n");
-                    d1.grouping1();
-                    d1.metric();
+                    d1.grouping1(d1);
                     Chart.display();
-
                 }
                 // option 2: This option shows the time range as a number of weeks/days from a particular date
                 case "2" -> {
@@ -68,8 +66,7 @@ public class Main {
                     System.out.println("*******************************************************************");
                     d2.display2();
                     System.out.println("*******************************************************************\n");
-                    d2.grouping2();
-                    d2.metric();
+                    d2.grouping2(d2);
                     Chart.display();
                 }
                 // option 3: This option shows the time range as a number of weeks/days to a particular date
@@ -80,8 +77,7 @@ public class Main {
                     System.out.println("*******************************************************************");
                     d3.display3();
                     System.out.println("*******************************************************************\n");
-                    d3.grouping3();
-                    d3.metric();
+                    d3.grouping3(d3);
                     Chart.display();
                 }
                 // default case: This option handles all the instances where a user enters an invalid option (not 0 or 1-3)
@@ -123,8 +119,7 @@ public class Main {
                                 System.out.println("****************************************************");
                                 d4.display1();
                                 System.out.println("****************************************************\n");
-                                d4.grouping1();
-                                d4.metric();
+                                d4.grouping1(d4);
                                 Chart.display();
                                 isInvalid = false;
                             }
@@ -135,8 +130,7 @@ public class Main {
                                 System.out.println("*******************************************************************");
                                 d5.display2();
                                 System.out.println("*******************************************************************\n");
-                                d5.grouping2();
-                                d5.metric();
+                                d5.grouping2(d5);
                                 Chart.display();
                                 isInvalid = false;
                             }
@@ -147,8 +141,7 @@ public class Main {
                                 System.out.println("*******************************************************************");
                                 d6.display3();
                                 System.out.println("*******************************************************************\n");
-                                d6.grouping3();
-                                d6.metric();
+                                d6.grouping3(d6);
                                 Chart.display();
                                 isInvalid = false;
                             }
@@ -158,5 +151,4 @@ public class Main {
             }
         }
     }
-
 }
