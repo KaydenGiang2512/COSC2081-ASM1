@@ -1,14 +1,16 @@
+package com.company;
+
 import java.io.*;
 import java.util.*;
 
 public class Data {
     // Initializing private variables for future usage
     public static String fileName = "src\\covid-data.csv";
-    public String location;
-    public String startDate;
-    public String endDate;
-    public int rangeChoice;
-    public int range;
+    protected String location;
+    protected String startDate;
+    protected String endDate;
+    protected int rangeChoice;
+    protected int range;
 
     //Setting up the constructors
     public Data(String location, String startDate, String endDate, int rangeChoice) {
@@ -32,24 +34,6 @@ public class Data {
     public Data() {
     }
 
-    //The setters for each variable
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
-    public void setRangeChoice(int rangeChoice) {
-        this.rangeChoice = rangeChoice;
-    }
-
     //The getters for each variable
 
     public String getLocation() {
@@ -68,7 +52,6 @@ public class Data {
         return this.rangeChoice;
     }
 
-    // Reading the csv file
     // Method to read the entire CSV file from the first row to the last row
     public ArrayList<String> getAllRows() {
         ArrayList<String> rows = new ArrayList<>();
@@ -149,7 +132,7 @@ public class Data {
             if (checkRowInfo2()) {
                 System.out.println("Time range not found");
             } else {
-                for (int i = fromIndex; i <= fromIndex + range; i++) {
+                for (int i = fromIndex; i <= fromIndex + range - 1; i++) {
                     result.add(getAllRows().get(i));
                     result.add("\n");
                 }
@@ -169,7 +152,7 @@ public class Data {
             if (checkRowInfo3()) {
                 System.out.println("Time range not found");
             } else {
-                for (int i = toIndex - range; i <= toIndex; i++) {
+                for (int i = toIndex - range + 1; i <= toIndex; i++) {
                     result.add(getAllRows().get(i));
                     result.add("\n");
                 }
@@ -196,6 +179,7 @@ public class Data {
                 }
             }
         }
+
         return false;
     }
 
@@ -217,13 +201,14 @@ public class Data {
                 }
             }
         }
+
         return false;
     }
 
     // Create input for the first time range case
     public static Data create1() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter your location (first letter MUST be capitalized): ");
+        System.out.print("Enter your country (first letter MUST be capitalized): ");
         String location = sc.nextLine();
         System.out.print("Enter starting date: ");
         String startDate = sc.nextLine();
@@ -235,7 +220,7 @@ public class Data {
     // Create input for the second time range case
     public static Data create2() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter your location (first letter MUST be capitalized): ");
+        System.out.print("Enter your country (first letter MUST be capitalized): ");
         String location = sc.nextLine();
         System.out.print("Enter starting date: ");
         String startDate = sc.nextLine();
@@ -272,7 +257,7 @@ public class Data {
 
     // Display the first time range case
     public void display1() {
-        System.out.printf("Your location is %s\nStarting from %s to %s\n", location, startDate, endDate);
+        System.out.printf("Your country is %s\nStarting from %s to %s\n", location, startDate, endDate);
     }
 
     // Display the second time range case
@@ -281,22 +266,21 @@ public class Data {
             int weeks = range * 7;
             if (range <= 0) {
                 System.out.println("Invalid number of weeks!");
-            }
-            else if (checkRowInfo2()) {
+            } else if (checkRowInfo2()) {
                 System.out.println("Time range not found!");
             } else {
-                System.out.printf("Your location is %s\nShowing %d week(s) from %s\n", location, weeks / 7, startDate);
+                System.out.printf("Your country is %s\nShowing %d week(s) from %s\n", location, weeks / 7, startDate);
             }
         }
-        else if (rangeChoice == 2) {
+
+        if (rangeChoice == 2) {
             int days = range;
             if (days <= 0) {
                 System.out.println("Invalid number of days!");
-            }
-            else if (checkRowInfo2()) {
+            } else if (checkRowInfo2()) {
                 System.out.println("Time range not found!");
             } else {
-                System.out.printf("Your location is %s\nShowing %d day(s) from %s\n", location, days, startDate);
+                System.out.printf("Your country is %s\nShowing %d day(s) from %s\n", location, days, startDate);
             }
         }
     }
@@ -307,23 +291,56 @@ public class Data {
             int weeks = range * 7;
             if (range <= 0) {
                 System.out.println("Invalid number of weeks!");
-            }
-            else if (checkRowInfo3()) {
+            } else if (checkRowInfo3()) {
                 System.out.println("Time range not found!");
             } else {
-                System.out.printf("Your location is %s\nShowing %d week(s) to %s\n", location, weeks / 7, endDate);
+                System.out.printf("Your country is %s\nShowing %d week(s) to %s\n", location, weeks / 7, endDate);
             }
-        }
-        else if (rangeChoice == 2) {
+        } else if (rangeChoice == 2) {
             int days = range;
             if (days <= 0) {
                 System.out.println("Invalid number of days!");
-            }
-            else if (checkRowInfo3()) {
+            } else if (checkRowInfo3()) {
                 System.out.println("Time range not found!");
             } else {
-                System.out.printf("Your location is %s\nShowing %d day(s) to %s\n", location, days, endDate);
+                System.out.printf("Your country is %s\nShowing %d day(s) to %s\n", location, days, endDate);
             }
         }
+    }
+
+    //Get the index column for case 1
+    public static String[] getColumn1(Data data, int columnIndex) {
+        String[] columns;
+        ArrayList<String> rows = data.addRow1();
+        String[] values = new String[rows.size()];
+        for (int i = 0; i < rows.size(); i += 2) {
+            columns = rows.get(i).split(",");
+            values[i] = columnIndex < columns.length ? columns[columnIndex] : "0";
+        }
+        return values;
+    }
+
+    //Get the index column for case 2
+    public static String[] getColumn2(Data data, int columnIndex) {
+        String[] columns;
+        ArrayList<String> rows = data.addRow2();
+        String[] values = new String[rows.size()];
+        for (int i = 0; i < rows.size(); i += 2) {
+            columns = rows.get(i).split(",");
+            values[i] = columnIndex < columns.length ? columns[columnIndex] : "0";
+        }
+        return values;
+    }
+
+    //Get the index column for case 1
+    public static String[] getColumn3(Data data, int columnIndex) {
+        String[] columns;
+        ArrayList<String> rows = data.addRow3();
+        String[] values = new String[rows.size()];
+        for (int i = 0; i < rows.size(); i += 2) {
+            columns = rows.get(i).split(",");
+            values[i] = columnIndex < columns.length ? columns[columnIndex] : "0";
+        }
+        return values;
     }
 }
