@@ -245,7 +245,8 @@ public class Data {
             System.out.print("Please enter the number of weeks: ");
             range = sc.nextInt();
             range *= 7;
-        } else if (rangeChoice == 2) {
+        } 
+        else if (rangeChoice == 2) {
             System.out.print("Please enter the number of days: ");
             range = sc.nextInt();
         }
