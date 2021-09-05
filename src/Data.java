@@ -1,3 +1,4 @@
+
 import java.io.*;
 import java.util.*;
 
@@ -18,7 +19,6 @@ public class Data {
         this.rangeChoice = rangeChoice;
     }
 
-    //This Convert method allows the data to be used in the Summary class for groupings, metrics and results type
     public void Convert(Data obj) {
         this.location = obj.location;
         this.startDate = obj.startDate;
@@ -125,7 +125,6 @@ public class Data {
     public ArrayList<String> addRow2() {
         int fromIndex = getAllRows().indexOf(getStartRow());
         ArrayList<String> result = new ArrayList<>();
-//        if (rangeChoice == 1) range *= 7;
         if (fromIndex + range >= getAllRows().size()) {
             System.out.println("Error");
         } else {
@@ -145,7 +144,6 @@ public class Data {
     public ArrayList<String> addRow3() {
         int toIndex = getAllRows().indexOf(getStopRow());
         ArrayList<String> result = new ArrayList<>();
-//        if (rangeChoice == 1) range *= 7;
         if (toIndex - range < 0) {
             System.out.println("Error");
         } else {
