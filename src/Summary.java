@@ -1,6 +1,43 @@
+package com.company;
+
 import java.util.*;
 
 public class Summary extends Data {
+    //Get the index column for case 1
+    public static String[] getColumn1(Data data, int columnIndex) {
+        String[] columns;
+        ArrayList<String> rows = data.addRow1();
+        String[] values = new String[rows.size()];
+        for (int i = 0; i < rows.size(); i += 2) {
+            columns = rows.get(i).split(",");
+            values[i] = columnIndex < columns.length ? columns[columnIndex] : "0";
+        }
+        return values;
+    }
+
+    //Get the index column for case 2
+    public static String[] getColumn2(Data data, int columnIndex) {
+        String[] columns;
+        ArrayList<String> rows = data.addRow2();
+        String[] values = new String[rows.size()];
+        for (int i = 0; i < rows.size(); i += 2) {
+            columns = rows.get(i).split(",");
+            values[i] = columnIndex < columns.length ? columns[columnIndex] : "0";
+        }
+        return values;
+    }
+
+    //Get the index column for case 1
+    public static String[] getColumn3(Data data, int columnIndex) {
+        String[] columns;
+        ArrayList<String> rows = data.addRow3();
+        String[] values = new String[rows.size()];
+        for (int i = 0; i < rows.size(); i += 2) {
+            columns = rows.get(i).split(",");
+            values[i] = columnIndex < columns.length ? columns[columnIndex] : "0";
+        }
+        return values;
+    }
 
     public void noGrouping1(Data data) {
         String[] temp = getColumn1(data, 3);
@@ -49,6 +86,13 @@ public class Summary extends Data {
         System.out.print("Enter number of groups: ");
         int numGroup = sc.nextInt() ;
         int size = addRow1().size() / 2;
+
+        //Number of group input validation.
+        while (numGroup > size || numGroup <= 0) {
+            System.out.print("Please enter another valid number of group: ");
+            numGroup = sc.nextInt();
+        }
+
         int daysPerGroup = size / numGroup;
         int index = daysPerGroup;
         int moreDays = size - daysPerGroup * numGroup;
@@ -86,6 +130,13 @@ public class Summary extends Data {
         System.out.print("Enter number of groups: ");
         int numGroup = sc.nextInt() ;
         int size = addRow2().size() / 2;
+
+        //Number of group input validation.
+        while (numGroup > size || numGroup <= 0) {
+            System.out.print("Please enter another valid number of group: ");
+            numGroup = sc.nextInt();
+        }
+
         int daysPerGroup = size / numGroup;
         int index = daysPerGroup;
         int moreDays = size - daysPerGroup * numGroup;
@@ -123,6 +174,13 @@ public class Summary extends Data {
         System.out.print("Enter number of groups: ");
         int numGroup = sc.nextInt() ;
         int size = addRow3().size() / 2;
+
+        //Number of group input validation.
+        while (numGroup > size || numGroup <= 0) {
+            System.out.print("Please enter another valid number of group: ");
+            numGroup = sc.nextInt();
+        }
+
         int daysPerGroup = size / numGroup;
         int index = daysPerGroup;
         int moreDays = size - daysPerGroup * numGroup;
