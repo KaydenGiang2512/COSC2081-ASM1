@@ -1,3 +1,5 @@
+package com.company;
+
 import java.util.*;
 
 public class Main {
@@ -50,45 +52,37 @@ public class Main {
                 // option 1: This option shows the time range as a pair of start date and end date
                 case "1" -> {
                     Data d1 = Data.create1();
-                    System.out.println("****************************************************");
-                    d1.display1();
-                    System.out.println("****************************************************\n");
-                    System.out.println(d1.addRow1());
-                    System.out.println("****************************************************");
                     Summary s1 = new Summary();
                     s1.Convert(d1);
+                    System.out.println("****************************************************");
+                    s1.display1();
+                    System.out.println("****************************************************\n");
                     s1.grouping1(s1);
                     Display.display();
                 }
                 // option 2: This option shows the time range as a number of weeks/days from a particular date
                 case "2" -> {
                     Data d2 = Data.create2();
-                    Summary index2 = new Summary();
-                    index2.Convert(d2);
-                    System.out.println("****************************************************");
-                    index2.inputRange();
-                    System.out.println("****************************************************");
-                    index2.display2();
-                    System.out.println("****************************************************\n");
-                    System.out.println(index2.addRow2());
-                    System.out.println("****************************************************");
                     Summary s2 = new Summary();
                     s2.Convert(d2);
+                    System.out.println("*******************************************************************");
+                    s2.inputRange();
+                    System.out.println("*******************************************************************");
+                    s2.display2();
+                    System.out.println("*******************************************************************\n");
                     s2.grouping2(s2);
                     Display.display();
                 }
                 // option 3: This option shows the time range as a number of weeks/days to a particular date
                 case "3" -> {
                     Data d3 = Data.create3();
-                    System.out.println("****************************************************");
-                    d3.inputRange();
-                    System.out.println("****************************************************");
-                    d3.display3();
-                    System.out.println("****************************************************\n");
-                    System.out.println(d3.addRow3());
-                    System.out.println("****************************************************");
                     Summary s3 = new Summary();
                     s3.Convert(d3);
+                    System.out.println("*******************************************************************");
+                    s3.inputRange();
+                    System.out.println("*******************************************************************");
+                    s3.display3();
+                    System.out.println("*******************************************************************\n");
                     s3.grouping3(s3);
                     Display.display();
                 }
@@ -128,43 +122,37 @@ public class Main {
                             }
                             case "1" -> {
                                 Data d1 = Data.create1();
-                                System.out.println("****************************************************");
-                                d1.display1();
-                                System.out.println("****************************************************\n");
-                                System.out.println(d1.addRow1());
-                                System.out.println("****************************************************");
                                 Summary s1 = new Summary();
                                 s1.Convert(d1);
+                                System.out.println("****************************************************");
+                                s1.display1();
+                                System.out.println("****************************************************\n");
                                 s1.grouping1(s1);
                                 Display.display();
                                 isInvalid = false;
                             }
                             case "2" -> {
                                 Data d2 = Data.create2();
-                                System.out.println("****************************************************");
-                                d2.inputRange();
-                                System.out.println("****************************************************");
-                                d2.display2();
-                                System.out.println("****************************************************\n");
-                                System.out.println(d2.addRow2());
-                                System.out.println("****************************************************");
                                 Summary s2 = new Summary();
                                 s2.Convert(d2);
+                                System.out.println("*******************************************************************");
+                                s2.inputRange();
+                                System.out.println("*******************************************************************");
+                                s2.display2();
+                                System.out.println("*******************************************************************\n");
                                 s2.grouping2(s2);
                                 Display.display();
                                 isInvalid = false;
                             }
                             case "3" -> {
                                 Data d3 = Data.create3();
-                                System.out.println("****************************************************");
-                                d3.inputRange();
-                                System.out.println("****************************************************");
-                                d3.display3();
-                                System.out.println("****************************************************\n");
-                                System.out.println(d3.addRow3());
-                                System.out.println("****************************************************");
                                 Summary s3 = new Summary();
                                 s3.Convert(d3);
+                                System.out.println("*******************************************************************");
+                                s3.inputRange();
+                                System.out.println("*******************************************************************");
+                                s3.display3();
+                                System.out.println("*******************************************************************\n");
                                 s3.grouping3(s3);
                                 Display.display();
                                 isInvalid = false;
