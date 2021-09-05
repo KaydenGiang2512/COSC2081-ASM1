@@ -1,5 +1,3 @@
-package com.company;
-
 public class Chart extends Display {
     public static void chart() {
         int ver = 24;
