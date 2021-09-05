@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 public class Summary extends Data {
