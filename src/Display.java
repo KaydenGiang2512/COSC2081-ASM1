@@ -12,7 +12,10 @@ public class Display extends Data {
 
         switch(displayOption) {
             case 1 -> Tabular.tabular();
-            case 2 -> Chart.chart();
+            case 2 -> {
+                System.out.println("To be completed");
+                Chart.chart();
+            }
             default -> {
                 boolean isInvalid = true;
                 while (isInvalid) {
@@ -25,6 +28,7 @@ public class Display extends Data {
                             isInvalid = false;
                         }
                         case 2 -> {
+                            System.out.println("To be completed");
                             Chart.chart();
                             isInvalid = false;
                         }
