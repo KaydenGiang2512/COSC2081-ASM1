@@ -53,9 +53,7 @@ public class Display extends Data {
                 data.addRow("", "");
                 data.print();
             }
-            case 2 -> {
-                chart();
-            }
+            case 2 -> chart();
         }
     }
 
