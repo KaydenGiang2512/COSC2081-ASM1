@@ -18,12 +18,12 @@ public class Main {
             //Initialize a new scanner to receive input from the user (a number 1-3 representing the corresponding method)
             Scanner sc = new Scanner(System.in);
             System.out.print("Please select an option 1-3: ");
-            String time_range = sc.nextLine();
+            int timeRange = sc.nextInt();
 
             //Creating an advanced switch case to handle the different user input possibilities
-            switch (time_range) {
+            switch (timeRange) {
                 // option 0: This option allows the user to stop the program
-                case "0" -> {
+                case 0 -> {
                     //Setting up a boolean variable to track the status of the program
                     boolean isRunning = false;
                     System.out.print("Do you want to run this program again? 1 (yes), 2 (no): ");
@@ -48,7 +48,7 @@ public class Main {
                     }
                 }
                 // option 1: This option shows the time range as a pair of start date and end date
-                case "1" -> {
+                case 1 -> {
                     Data d1 = Data.create1();
                     Summary s1 = new Summary();
                     Summary index = new Summary();
@@ -63,7 +63,7 @@ public class Main {
 //                    Display.display();
                 }
                 // option 2: This option shows the time range as a number of weeks/days from a particular date
-                case "2" -> {
+                case 2 -> {
                     Data d2 = Data.create2();
                     Summary s2 = new Summary();
                     Summary index = new Summary();
@@ -80,7 +80,7 @@ public class Main {
 //                    Display.display();
                 }
                 // option 3: This option shows the time range as a number of weeks/days to a particular date
-                case "3" -> {
+                case 3 -> {
                     Data d3 = Data.create3();
                     Summary s3 = new Summary();
                     Summary index = new Summary();
@@ -104,10 +104,10 @@ public class Main {
                     while (isInvalid) {
                         System.out.println("************************************************");
                         System.out.print("Invalid selection! Please select an option 1-3: ");
-                        time_range = sc.nextLine();
+                        timeRange = sc.nextInt();
 
-                        switch (time_range) {
-                            case "0" -> {
+                        switch (timeRange) {
+                            case 0 -> {
                                 boolean isRunning = false;
                                 System.out.print("Do you want to run this program again? 1 (yes), 2 (no): ");
                                 int option = sc.nextInt();
@@ -130,7 +130,7 @@ public class Main {
                                     }
                                 }
                             }
-                            case "1" -> {
+                            case 1 -> {
                                 Data d1 = Data.create1();
                                 Summary s1 = new Summary();
                                 Summary index = new Summary();
@@ -145,7 +145,7 @@ public class Main {
 //                                Display.display();
                                 isInvalid = false;
                             }
-                            case "2" -> {
+                            case 2 -> {
                                 Data d2 = Data.create2();
                                 Summary s2 = new Summary();
                                 Summary index = new Summary();
@@ -162,7 +162,7 @@ public class Main {
 //                                Display.display();
                                 isInvalid = false;
                             }
-                            case "3" -> {
+                            case 3 -> {
                                 Data d3 = Data.create3();
                                 Summary s3 = new Summary();
                                 Summary index = new Summary();
