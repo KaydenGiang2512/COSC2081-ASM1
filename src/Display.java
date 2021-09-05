@@ -13,7 +13,7 @@ public class Display extends Data {
         switch(displayOption) {
             case 1 -> Tabular.tabular();
             case 2 -> {
-                System.out.println("To be completed");
+                System.out.println("To be completed\n");
                 Chart.chart();
             }
             default -> {
@@ -28,7 +28,7 @@ public class Display extends Data {
                             isInvalid = false;
                         }
                         case 2 -> {
-                            System.out.println("To be completed");
+                            System.out.println("To be completed\n");
                             Chart.chart();
                             isInvalid = false;
                         }
