@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class Display extends Data {
-
     public static void display() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Choose a display option: ");
@@ -14,8 +13,5 @@ public class Display extends Data {
             case 1 -> Tabular.tabular();
             case 2 -> Chart.chart();
         }
-    }
-    public static void main(String[] args) {
-        display();
     }
 }

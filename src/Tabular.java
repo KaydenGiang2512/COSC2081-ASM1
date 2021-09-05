@@ -73,7 +73,7 @@ public class Tabular extends Data {
     }
 
     public static void tabular() {
-        com.company.Tabular data = new com.company.Tabular();
+        Tabular data = new Tabular();
         data.setShowVerticalLines(true);
         data.setHeaders("Range", "Value");
         data.addRow("To", "To");
