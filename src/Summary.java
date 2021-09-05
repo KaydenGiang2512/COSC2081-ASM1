@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 public class Summary extends Data {
@@ -35,6 +36,183 @@ public class Summary extends Data {
             values[i] = columnIndex < columns.length ? columns[columnIndex] : "0";
         }
         return values;
+    }
+
+    //Metric for case 1
+    public List<String> metric1(Data data) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("There are 3 different metrics: ");
+        System.out.println("1. Positive Cases");
+        System.out.println("2. Deaths");
+        System.out.println("3. People Vaccinated");
+        System.out.print("Please select an option 1-3: ");
+        int metricOption = sc.nextInt();
+        List<String> method = null;
+
+        switch (metricOption) {
+            case 1 -> {
+                System.out.println("Positive Cases: ");
+                String[] temp = getColumn1(data, 4);
+                method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
+            }
+            case 2 -> {
+                System.out.println("Deaths: ");
+                String[] temp = getColumn1(data, 5);
+                method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
+            }
+            case 3 -> {
+                System.out.println("People Vaccinated: ");
+                String[] temp = getColumn1(data, 6);
+                method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
+            }
+            default -> {
+                boolean isInvalid = true;
+                while (isInvalid) {
+                    System.out.print("Invalid selection! Please select an option 1-3: ");
+                    metricOption = sc.nextInt();
+
+                    switch (metricOption) {
+                        case 1 -> {
+                            System.out.println("Positive Cases: ");
+                            String[] temp = getColumn1(data, 4);
+                            method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
+                            isInvalid = false;
+                        }
+                        case 2 -> {
+                            System.out.println("Deaths: ");
+                            String[] temp = getColumn1(data, 5);
+                            method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
+                            isInvalid = false;
+                        }
+                        case 3 -> {
+                            System.out.println("People Vaccinated: ");
+                            String[] temp = getColumn1(data, 6);
+                            method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
+                            isInvalid = false;
+                        }
+                    }
+                }
+            }
+        }
+        return method;
+    }
+
+    //Metric for case 2
+    public List<String> metric2(Data data) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("There are 3 different metrics: ");
+        System.out.println("1. Positive Cases");
+        System.out.println("2. Deaths");
+        System.out.println("3. People Vaccinated");
+        System.out.print("Please select an option 1-3: ");
+        int metricOption = sc.nextInt();
+        List<String> method = null;
+
+        switch (metricOption) {
+            case 1 -> {
+                System.out.println("Positive Cases: ");
+                String[] temp = getColumn2(data, 4);
+                method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
+            }
+            case 2 -> {
+                System.out.println("Deaths: ");
+                String[] temp = getColumn2(data, 5);
+                method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
+            }
+            case 3 -> {
+                System.out.println("People Vaccinated: ");
+                String[] temp = getColumn2(data, 6);
+                method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
+            }
+            default -> {
+                boolean isInvalid = true;
+                while (isInvalid) {
+                    System.out.print("Invalid selection! Please select an option 1-3: ");
+                    metricOption = sc.nextInt();
+
+                    switch (metricOption) {
+                        case 1 -> {
+                            System.out.println("Positive Cases: ");
+                            String[] temp = getColumn2(data, 4);
+                            method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
+                            isInvalid = false;
+                        }
+                        case 2 -> {
+                            System.out.println("Deaths: ");
+                            String[] temp = getColumn2(data, 5);
+                            method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
+                            isInvalid = false;
+                        }
+                        case 3 -> {
+                            System.out.println("People Vaccinated: ");
+                            String[] temp = getColumn2(data, 6);
+                            method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
+                            isInvalid = false;
+                        }
+                    }
+                }
+            }
+        }
+        return method;
+    }
+
+    //Metric for case 3
+    public List<String> metric3(Data data) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("There are 3 different metrics: ");
+        System.out.println("1. Positive Cases");
+        System.out.println("2. Deaths");
+        System.out.println("3. People Vaccinated");
+        System.out.print("Please select an option 1-3: ");
+        int metricOption = sc.nextInt();
+        List<String> method = null;
+
+        switch (metricOption) {
+            case 1 -> {
+                System.out.println("Positive Cases: ");
+                String[] temp = getColumn3(data, 4);
+                method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
+            }
+            case 2 -> {
+                System.out.println("Deaths: ");
+                String[] temp = getColumn3(data, 5);
+                method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
+            }
+            case 3 -> {
+                System.out.println("People Vaccinated: ");
+                String[] temp = getColumn3(data, 6);
+                method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
+            }
+            default -> {
+                boolean isInvalid = true;
+                while (isInvalid) {
+                    System.out.print("Invalid selection! Please select an option 1-3: ");
+                    metricOption = sc.nextInt();
+
+                    switch (metricOption) {
+                        case 1 -> {
+                            System.out.println("Positive Cases: ");
+                            String[] temp = getColumn3(data, 4);
+                            method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
+                            isInvalid = false;
+                        }
+                        case 2 -> {
+                            System.out.println("Deaths: ");
+                            String[] temp = getColumn3(data, 5);
+                            method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
+                            isInvalid = false;
+                        }
+                        case 3 -> {
+                            System.out.println("People Vaccinated: ");
+                            String[] temp = getColumn3(data, 6);
+                            method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
+                            isInvalid = false;
+                        }
+                    }
+                }
+            }
+        }
+        return method;
     }
 
     public void noGrouping1(Data data) {
@@ -85,9 +263,9 @@ public class Summary extends Data {
         int numGroup = sc.nextInt() ;
         int size = addRow1().size() / 2;
 
-        //Number of groups input validation
+        //Number of group input validation.
         while (numGroup > size || numGroup <= 0) {
-            System.out.print("Please enter a valid number of groups: ");
+            System.out.print("Please enter another valid number of group: ");
             numGroup = sc.nextInt();
         }
 
@@ -129,9 +307,9 @@ public class Summary extends Data {
         int numGroup = sc.nextInt() ;
         int size = addRow2().size() / 2;
 
-        //Number of groups input validation
+        //Number of group input validation.
         while (numGroup > size || numGroup <= 0) {
-            System.out.print("Please enter a valid number of groups: ");
+            System.out.print("Please enter another valid number of group: ");
             numGroup = sc.nextInt();
         }
 
@@ -173,9 +351,9 @@ public class Summary extends Data {
         int numGroup = sc.nextInt() ;
         int size = addRow3().size() / 2;
 
-        //Number of groups input validation
+        //Number of group input validation.
         while (numGroup > size || numGroup <= 0) {
-            System.out.print("Please enter a valid number of groups: ");
+            System.out.print("Please enter another valid number of group: ");
             numGroup = sc.nextInt();
         }
 
@@ -217,7 +395,7 @@ public class Summary extends Data {
         int listSize = stringList.size() / 2;
 
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter number of days in each group: ");
+        System.out.print("Enter number of days in a group: ");
         int daysPerGroup = sc.nextInt();
 
         //To make sure that the number of days input is divided my the size of data.
@@ -263,7 +441,7 @@ public class Summary extends Data {
         int listSize = stringList.size() / 2;
 
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter number of days in each group: ");
+        System.out.print("Enter number of days in a group: ");
         int daysPerGroup = sc.nextInt();
 
         //To make sure that the number of days input is divided my the size of data.
@@ -309,7 +487,7 @@ public class Summary extends Data {
         int listSize = stringList.size() / 2;
 
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter number of days in each group: ");
+        System.out.print("Enter number of days in a group: ");
         int daysPerGroup = sc.nextInt();
 
         //To make sure that the number of days input is divided my the size of data.
@@ -352,11 +530,11 @@ public class Summary extends Data {
     //Grouping methods for case 1
     public void grouping1(Data data) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("There are 3 different grouping methods: ");
+        System.out.println("\nThere are 3 different grouping methods: ");
         System.out.println("1. No grouping");
         System.out.println("2. Number of groups");
         System.out.println("3. Number of days per group");
-        System.out.print("\nPlease select an option 1-3: ");
+        System.out.print("Please select an option 1-3: ");
         int groupOption = sc.nextInt();
 
         switch (groupOption) {
@@ -391,11 +569,11 @@ public class Summary extends Data {
     //Grouping methods for case 2
     public void grouping2(Data data) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("There are 3 different grouping methods: ");
+        System.out.println("\nThere are 3 different grouping methods: ");
         System.out.println("1. No grouping");
         System.out.println("2. Number of groups");
         System.out.println("3. Number of days per group");
-        System.out.print("\nPlease select an option 1-3: ");
+        System.out.print("Please select an option 1-3: ");
         int groupOption = sc.nextInt();
 
         switch (groupOption) {
@@ -430,11 +608,11 @@ public class Summary extends Data {
     //Grouping methods for case 3
     public void grouping3(Data data) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("There are 3 different grouping methods: ");
+        System.out.println("\nThere are 3 different grouping methods: ");
         System.out.println("1. No grouping");
         System.out.println("2. Number of groups");
         System.out.println("3. Number of days per group");
-        System.out.print("\nPlease select an option 1-3: ");
+        System.out.print("Please select an option 1-3: ");
         int groupOption = sc.nextInt();
 
         switch (groupOption) {
@@ -466,201 +644,14 @@ public class Summary extends Data {
         }
     }
 
-    //Metric for case 1
-    public List<String> metric1(Data data) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("****************************************************");
-        System.out.println("There are 3 different metrics: ");
-        System.out.println("1. Positive Cases");
-        System.out.println("2. Deaths");
-        System.out.println("3. People Vaccinated");
-        System.out.print("\nPlease select an option 1-3: ");
-        int metricOption = sc.nextInt();
-        List<String> method = null;
+    public static void main(String[] args) {
+        Data d = Data.create2();
+        Summary s = new Summary();
 
-        switch (metricOption) {
-            case 1 -> {
-                System.out.println("****************************************************");
-                System.out.println("Positive Cases: \n");
-                String[] temp = getColumn1(data, 4);
-                method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
-            }
-            case 2 -> {
-                System.out.println("****************************************************");
-                System.out.println("Deaths: \n");
-                String[] temp = getColumn1(data, 5);
-                method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
-            }
-            case 3 -> {
-                System.out.println("****************************************************");
-                System.out.println("People Vaccinated: \n");
-                String[] temp = getColumn1(data, 6);
-                method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
-            }
-            default -> {
-                boolean isInvalid = true;
-                while (isInvalid) {
-                    System.out.print("Invalid selection! Please select an option 1-3: ");
-                    metricOption = sc.nextInt();
+        d.inputRange();
+        s.Convert(d);
+        s.grouping2(s);
 
-                    switch (metricOption) {
-                        case 1 -> {
-                            System.out.println("****************************************************");
-                            System.out.println("Positive Cases: \n");
-                            String[] temp = getColumn1(data, 4);
-                            method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
-                            isInvalid = false;
-                        }
-                        case 2 -> {
-                            System.out.println("****************************************************");
-                            System.out.println("Deaths: \n");
-                            String[] temp = getColumn1(data, 5);
-                            method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
-                            isInvalid = false;
-                        }
-                        case 3 -> {
-                            System.out.println("****************************************************");
-                            System.out.println("People Vaccinated: \n");
-                            String[] temp = getColumn1(data, 6);
-                            method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
-                            isInvalid = false;
-                        }
-                    }
-                }
-            }
-        }
-        return method;
-    }
 
-    //Metric for case 2
-    public List<String> metric2(Data data) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("****************************************************");
-        System.out.println("There are 3 different metrics: ");
-        System.out.println("1. Positive Cases");
-        System.out.println("2. Deaths");
-        System.out.println("3. People Vaccinated");
-        System.out.print("\nPlease select an option 1-3: ");
-        int metricOption = sc.nextInt();
-        List<String> method = null;
-
-        switch (metricOption) {
-            case 1 -> {
-                System.out.println("****************************************************");
-                System.out.println("Positive Cases: \n");
-                String[] temp = getColumn2(data, 4);
-                method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
-            }
-            case 2 -> {
-                System.out.println("****************************************************");
-                System.out.println("Deaths: \n");
-                String[] temp = getColumn2(data, 5);
-                method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
-            }
-            case 3 -> {
-                System.out.println("****************************************************");
-                System.out.println("People Vaccinated: \n");
-                String[] temp = getColumn2(data, 6);
-                method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
-            }
-            default -> {
-                boolean isInvalid = true;
-                while (isInvalid) {
-                    System.out.print("Invalid selection! Please select an option 1-3: ");
-                    metricOption = sc.nextInt();
-
-                    switch (metricOption) {
-                        case 1 -> {
-                            System.out.println("****************************************************");
-                            System.out.println("Positive Cases: \n");
-                            String[] temp = getColumn2(data, 4);
-                            method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
-                            isInvalid = false;
-                        }
-                        case 2 -> {
-                            System.out.println("****************************************************");
-                            System.out.println("Deaths: \n");
-                            String[] temp = getColumn2(data, 5);
-                            method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
-                            isInvalid = false;
-                        }
-                        case 3 -> {
-                            System.out.println("****************************************************");
-                            System.out.println("People Vaccinated: \n");
-                            String[] temp = getColumn2(data, 6);
-                            method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
-                            isInvalid = false;
-                        }
-                    }
-                }
-            }
-        }
-        return method;
-    }
-
-    //Metric for case 3
-    public List<String> metric3(Data data) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("****************************************************");
-        System.out.println("There are 3 different metrics: ");
-        System.out.println("1. Positive Cases");
-        System.out.println("2. Deaths");
-        System.out.println("3. People Vaccinated");
-        System.out.print("\nPlease select an option 1-3: ");
-        int metricOption = sc.nextInt();
-        List<String> method = null;
-
-        switch (metricOption) {
-            case 1 -> {
-                System.out.println("****************************************************");
-                System.out.println("Positive Cases: \n");
-                String[] temp = getColumn3(data, 4);
-                method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
-            }
-            case 2 -> {
-                System.out.println("****************************************************");
-                System.out.println("Deaths: \n");
-                String[] temp = getColumn3(data, 5);
-                method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
-            }
-            case 3 -> {
-                System.out.println("****************************************************");
-                System.out.println("People Vaccinated: \n");
-                String[] temp = getColumn3(data, 6);
-                method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
-            }
-            default -> {
-                boolean isInvalid = true;
-                while (isInvalid) {
-                    System.out.print("Invalid selection! Please select an option 1-3: ");
-                    metricOption = sc.nextInt();
-
-                    switch (metricOption) {
-                        case 1 -> {
-                            System.out.println("****************************************************");
-                            System.out.println("Positive Cases: \n");
-                            String[] temp = getColumn3(data, 4);
-                            method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
-                            isInvalid = false;
-                        }
-                        case 2 -> {
-                            System.out.println("****************************************************");
-                            System.out.println("Deaths: \n");
-                            String[] temp = getColumn3(data, 5);
-                            method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
-                            isInvalid = false;
-                        }
-                        case 3 -> {
-                            System.out.println("****************************************************");
-                            System.out.println("People Vaccinated: \n");
-                            String[] temp = getColumn3(data, 6);
-                            method = new ArrayList<>(Arrays.asList(temp)); //Convert String[] into ArrayList
-                            isInvalid = false;
-                        }
-                    }
-                }
-            }
-        }
-        return method;
     }
 }
