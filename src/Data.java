@@ -1,4 +1,3 @@
-
 import java.io.*;
 import java.util.*;
 
@@ -19,6 +18,7 @@ public class Data {
         this.rangeChoice = rangeChoice;
     }
 
+    //This Convert method allows the data to be used in the Summary class for groupings, metrics and results type
     public void Convert(Data obj) {
         this.location = obj.location;
         this.startDate = obj.startDate;
@@ -206,9 +206,9 @@ public class Data {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter your location (first letter MUST be capitalized): ");
         String location = sc.nextLine();
-        System.out.print("Enter starting date: ");
+        System.out.print("Enter starting date (mm/dd/yyyy): ");
         String startDate = sc.nextLine();
-        System.out.print("Enter ending date: ");
+        System.out.print("Enter ending date (mm/dd/yyyy): ");
         String endDate = sc.nextLine();
         return new Data(location, startDate, endDate, 0);
     }
@@ -218,7 +218,7 @@ public class Data {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter your location (first letter MUST be capitalized): ");
         String location = sc.nextLine();
-        System.out.print("Enter starting date: ");
+        System.out.print("Enter starting date (mm/dd/yyyy): ");
         String startDate = sc.nextLine();
         System.out.print("Choose display in weeks (1) or display in days (2): ");
         int rangeChoice = sc.nextInt();
@@ -230,7 +230,7 @@ public class Data {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter your location (first letter MUST be capitalized): ");
         String location = sc.nextLine();
-        System.out.print("Enter ending date: ");
+        System.out.print("Enter ending date (mm/dd/yyyy): ");
         String endDate = sc.nextLine();
         System.out.print("Choose display in weeks (1) or display in days (2): ");
         int rangeChoice = sc.nextInt();
@@ -245,7 +245,7 @@ public class Data {
             System.out.print("Please enter the number of weeks: ");
             range = sc.nextInt();
             range *= 7;
-        } 
+        }
         else if (rangeChoice == 2) {
             System.out.print("Please enter the number of days: ");
             range = sc.nextInt();

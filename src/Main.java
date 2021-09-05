@@ -167,14 +167,14 @@ public class Main {
                                 Summary s3 = new Summary();
                                 Summary index = new Summary();
                                 s3.Convert(d3);
-                                System.out.println("*******************************************************************");
+                                System.out.println("******************************************************");
                                 s3.inputRange();
-                                System.out.println("*******************************************************************");
+                                System.out.println("******************************************************");
                                 s3.display3();
                                 index.Convert(s3);
-                                System.out.println("****************************************************\n");
+                                System.out.println("******************************************************\n");
                                 System.out.println(index.addRow3());
-                                System.out.println("\n*******************************************************************");
+                                System.out.println("\n******************************************************");
                                 s3.grouping3(s3);
                                 Display.display();
                                 isInvalid = false;

@@ -3,6 +3,7 @@ import java.util.*;
 public class Display extends Data {
     public static void display() {
         Scanner sc = new Scanner(System.in);
+        System.out.println("\n****************************************************");
         System.out.println("There are 2 display options: ");
         System.out.println("1. Tabular");
         System.out.println("2. Chart");
