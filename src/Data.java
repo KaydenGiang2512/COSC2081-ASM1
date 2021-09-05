@@ -1,3 +1,4 @@
+
 import java.io.*;
 import java.util.*;
 
@@ -18,7 +19,6 @@ public class Data {
         this.rangeChoice = rangeChoice;
     }
 
-    //This Convert method allows the data to be used in the Summary class for groupings, metrics and results type
     public void Convert(Data obj) {
         this.location = obj.location;
         this.startDate = obj.startDate;
