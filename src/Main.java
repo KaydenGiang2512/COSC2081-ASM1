@@ -60,7 +60,7 @@ public class Main {
                     System.out.println(index.addRow1());
                     System.out.println("\n****************************************************");
                     s1.grouping1(s1);
-//                    Display.display();
+                    Display.display();
                 }
                 // option 2: This option shows the time range as a number of weeks/days from a particular date
                 case 2 -> {
@@ -77,7 +77,7 @@ public class Main {
                     System.out.println(index.addRow2());
                     System.out.println("\n****************************************************");
                     s2.grouping2(s2);
-//                    Display.display();
+                    Display.display();
                 }
                 // option 3: This option shows the time range as a number of weeks/days to a particular date
                 case 3 -> {
@@ -94,7 +94,7 @@ public class Main {
                     System.out.println(index.addRow3());
                     System.out.println("\n*******************************************************************");
                     s3.grouping3(s3);
-//                    Display.display();
+                    Display.display();
                 }
                 // default case: This option handles all the instances where a user enters an invalid option (not 0 or 1-3)
                 default -> {
@@ -142,7 +142,7 @@ public class Main {
                                 System.out.println(index.addRow1());
                                 System.out.println("\n****************************************************");
                                 s1.grouping1(s1);
-//                                Display.display();
+                                Display.display();
                                 isInvalid = false;
                             }
                             case 2 -> {
@@ -159,7 +159,7 @@ public class Main {
                                 System.out.println(index.addRow2());
                                 System.out.println("\n****************************************************");
                                 s2.grouping2(s2);
-//                                Display.display();
+                                Display.display();
                                 isInvalid = false;
                             }
                             case 3 -> {
@@ -176,7 +176,7 @@ public class Main {
                                 System.out.println(index.addRow3());
                                 System.out.println("\n*******************************************************************");
                                 s3.grouping3(s3);
-//                                Display.display();
+                                Display.display();
                                 isInvalid = false;
                             }
                         }
