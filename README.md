@@ -7,4 +7,4 @@ Click this link to gain access to our Github: https://github.com/NhatKhanhGiang/
 Click this link to watch our presentation video: N/A
 
 Contribution information:
-- All contributions are the same
+- All contributions are the same (No additions/subtractions for any member)
