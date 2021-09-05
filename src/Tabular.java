@@ -1,15 +1,13 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
-public class Tabular {
-    private static final String HORIZONTAL_SEP = "-";
+import java.util.*;
+
+public class Tabular extends Data {
+    private static final String horizontalSep = "-";
     private String verticalSep;
     private String joinSep;
     private String[] headers;
-    private List<String[]> rows = new ArrayList<>();
-    private boolean rightAlign;
+    private final List<String[]> rows = new ArrayList<>();
+
 
     public Tabular() {
         setShowVerticalLines(false);
@@ -60,9 +58,28 @@ public class Tabular {
     private void printLine(int[] columnWidths) {
         for (int i = 0; i < columnWidths.length; i++) {
             String line = String.join("", Collections.nCopies(columnWidths[i] +
-                    verticalSep.length() + 1, HORIZONTAL_SEP));
+                    verticalSep.length() + 1, horizontalSep));
             System.out.print(joinSep + line + (i == columnWidths.length - 1 ? joinSep : ""));
         }
         System.out.println();
+    }
+
+    private void printRow(String[] cells, int[] maxWidths) {
+        for (int i = 0; i < cells.length; i++) {
+            String s = cells[i];
+            String verStrTemp = i == cells.length - 1 ? verticalSep : "";
+            System.out.printf("%s %-" + maxWidths[i] + "s %s", verticalSep, s, verStrTemp);
+        }
+        System.out.println();
+    }
+
+    public static void tabular() {
+        com.company.Tabular data = new com.company.Tabular();
+        data.setShowVerticalLines(true);
+        data.setHeaders("Range", "Value");
+        data.addRow("To", "To");
+        data.addRow("Be", "Be");
+        data.addRow("Completed", "Completed");
+        data.print();
     }
 }
