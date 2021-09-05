@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 public class Summary extends Data {
@@ -666,333 +667,6 @@ public class Summary extends Data {
         return method;
     }
 
-    //These method prompts the user to choose between new total/up to result types for the new positive cases
-    public void newCases1() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("There are 2 different results types: ");
-        System.out.println("1. New Total");
-        System.out.println("2. Up to");
-        System.out.print("\nPlease select an option 1-2: ");
-        int resultOption = sc.nextInt();
-
-        switch (resultOption) {
-            case 1 -> {
-                System.out.println("****************************************************");
-                System.out.println("New Total Cases: " + newTotalCases1() + "\n");
-            }
-            case 2 -> System.out.println("To be completed");
-            default -> {
-                boolean isInvalid = true;
-                while (isInvalid) {
-                    System.out.print("Invalid selection! Please select an option 1-3: ");
-                    resultOption = sc.nextInt();
-
-                    switch (resultOption) {
-                        case 1 -> {
-                            System.out.println("****************************************************");
-                            System.out.println("New Total Cases: " + newTotalCases1() + "\n");
-                            isInvalid = false;
-                        }
-                        case 2 -> {
-                            System.out.println("To be completed");
-                            isInvalid = false;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public void newCases2() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("There are 2 different results types: ");
-        System.out.println("1. New Total");
-        System.out.println("2. Up to");
-        System.out.print("\nPlease select an option 1-2: ");
-        int resultOption = sc.nextInt();
-
-        switch (resultOption) {
-            case 1 -> {
-                System.out.println("****************************************************");
-                System.out.println("New Total Cases: " + newTotalCases2() + "\n");
-            }
-            case 2 -> System.out.println("To be completed");
-            default -> {
-                boolean isInvalid = true;
-                while (isInvalid) {
-                    System.out.print("Invalid selection! Please select an option 1-3: ");
-                    resultOption = sc.nextInt();
-
-                    switch (resultOption) {
-                        case 1 -> {
-                            System.out.println("****************************************************");
-                            System.out.println("New Total Cases: " + newTotalCases1() + "\n");
-                            isInvalid = false;
-                        }
-                        case 2 -> {
-                            System.out.println("To be completed");
-                            isInvalid = false;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public void newCases3() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("There are 2 different results types: ");
-        System.out.println("1. New Total");
-        System.out.println("2. Up to");
-        System.out.print("\nPlease select an option 1-2: ");
-        int resultOption = sc.nextInt();
-
-        switch (resultOption) {
-            case 1 -> {
-                System.out.println("****************************************************");
-                System.out.println("New Total Cases: " + newTotalCases3() + "\n");
-            }
-            case 2 -> System.out.println("To be completed");
-            default -> {
-                boolean isInvalid = true;
-                while (isInvalid) {
-                    System.out.print("Invalid selection! Please select an option 1-3: ");
-                    resultOption = sc.nextInt();
-
-                    switch (resultOption) {
-                        case 1 -> {
-                            System.out.println("****************************************************");
-                            System.out.println("New Total Cases: " + newTotalCases1() + "\n");
-                            isInvalid = false;
-                        }
-                        case 2 -> {
-                            System.out.println("To be completed");
-                            isInvalid = false;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    //These method prompts the user to choose between new total/up to result types for the new deaths
-    public void newDeaths1() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("There are 2 different results types: ");
-        System.out.println("1. New Total");
-        System.out.println("2. Up to");
-        System.out.print("\nPlease select an option 1-2: ");
-        int resultOption = sc.nextInt();
-
-        switch (resultOption) {
-            case 1 -> {
-                System.out.println("****************************************************");
-                System.out.println("New Total Deaths: " + newTotalDeaths1() + "\n");
-            }
-            case 2 -> System.out.println("To be completed");
-            default -> {
-                boolean isInvalid = true;
-                while (isInvalid) {
-                    System.out.print("Invalid selection! Please select an option 1-3: ");
-                    resultOption = sc.nextInt();
-
-                    switch (resultOption) {
-                        case 1 -> {
-                            System.out.println("****************************************************");
-                            System.out.println("New Total Cases: " + newTotalCases1() + "\n");
-                            isInvalid = false;
-                        }
-                        case 2 -> {
-                            System.out.println("To be completed");
-                            isInvalid = false;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public void newDeaths2() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("There are 2 different results types: ");
-        System.out.println("1. New Total");
-        System.out.println("2. Up to");
-        System.out.print("\nPlease select an option 1-2: ");
-        int resultOption = sc.nextInt();
-
-        switch (resultOption) {
-            case 1 -> {
-                System.out.println("****************************************************");
-                System.out.println("New Total Deaths: " + newTotalDeaths2() + "\n");
-            }
-            case 2 -> System.out.println("To be completed");
-            default -> {
-                boolean isInvalid = true;
-                while (isInvalid) {
-                    System.out.print("Invalid selection! Please select an option 1-3: ");
-                    resultOption = sc.nextInt();
-
-                    switch (resultOption) {
-                        case 1 -> {
-                            System.out.println("****************************************************");
-                            System.out.println("New Total Cases: " + newTotalCases1() + "\n");
-                            isInvalid = false;
-                        }
-                        case 2 -> {
-                            System.out.println("To be completed");
-                            isInvalid = false;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public void newDeaths3() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("There are 2 different results types: ");
-        System.out.println("1. New Total");
-        System.out.println("2. Up to");
-        System.out.print("\nPlease select an option 1-2: ");
-        int resultOption = sc.nextInt();
-
-        switch (resultOption) {
-            case 1 -> {
-                System.out.println("****************************************************");
-                System.out.println("New Total Deaths: " + newTotalDeaths3() + "\n");
-            }
-            case 2 -> System.out.println("To be completed");
-            default -> {
-                boolean isInvalid = true;
-                while (isInvalid) {
-                    System.out.print("Invalid selection! Please select an option 1-3: ");
-                    resultOption = sc.nextInt();
-
-                    switch (resultOption) {
-                        case 1 -> {
-                            System.out.println("****************************************************");
-                            System.out.println("New Total Cases: " + newTotalCases1() + "\n");
-                            isInvalid = false;
-                        }
-                        case 2 -> {
-                            System.out.println("To be completed");
-                            isInvalid = false;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    //These method prompts the user to choose between new total/up to result types for the new vaccinated people
-    public void newVaccinated1() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("There are 2 different results types: ");
-        System.out.println("1. New Total");
-        System.out.println("2. Up to");
-        System.out.print("\nPlease select an option 1-2: ");
-        int resultOption = sc.nextInt();
-
-        switch (resultOption) {
-            case 1 -> {
-                System.out.println("****************************************************");
-                System.out.println("New Total People Vaccinated: " + newTotalVaccinated1() + "\n");
-            }
-            case 2 -> System.out.println("To be completed");
-            default -> {
-                boolean isInvalid = true;
-                while (isInvalid) {
-                    System.out.print("Invalid selection! Please select an option 1-3: ");
-                    resultOption = sc.nextInt();
-
-                    switch (resultOption) {
-                        case 1 -> {
-                            System.out.println("****************************************************");
-                            System.out.println("New Total Cases: " + newTotalCases1() + "\n");
-                            isInvalid = false;
-                        }
-                        case 2 -> {
-                            System.out.println("To be completed");
-                            isInvalid = false;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public void newVaccinated2() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("There are 2 different results types: ");
-        System.out.println("1. New Total");
-        System.out.println("2. Up to");
-        System.out.print("\nPlease select an option 1-2: ");
-        int resultOption = sc.nextInt();
-
-        switch (resultOption) {
-            case 1 -> {
-                System.out.println("****************************************************");
-                System.out.println("New Total People Vaccinated: " + newTotalVaccinated2() + "\n");
-            }
-            case 2 -> System.out.println("To be completed");
-            default -> {
-                boolean isInvalid = true;
-                while (isInvalid) {
-                    System.out.print("Invalid selection! Please select an option 1-3: ");
-                    resultOption = sc.nextInt();
-
-                    switch (resultOption) {
-                        case 1 -> {
-                            System.out.println("****************************************************");
-                            System.out.println("New Total Cases: " + newTotalCases1() + "\n");
-                            isInvalid = false;
-                        }
-                        case 2 -> {
-                            System.out.println("To be completed");
-                            isInvalid = false;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public void newVaccinated3() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("There are 2 different results types: ");
-        System.out.println("1. New Total");
-        System.out.println("2. Up to");
-        System.out.print("\nPlease select an option 1-2: ");
-        int resultOption = sc.nextInt();
-
-        switch (resultOption) {
-            case 1 -> {
-                System.out.println("****************************************************");
-                System.out.println("New Total People Vaccinated: " + newTotalVaccinated3() + "\n");
-            }
-            case 2 -> System.out.println("To be completed");
-            default -> {
-                boolean isInvalid = true;
-                while (isInvalid) {
-                    System.out.print("Invalid selection! Please select an option 1-3: ");
-                    resultOption = sc.nextInt();
-
-                    switch (resultOption) {
-                        case 1 -> {
-                            System.out.println("****************************************************");
-                            System.out.println("New Total Cases: " + newTotalCases1() + "\n");
-                            isInvalid = false;
-                        }
-                        case 2 -> {
-                            System.out.println("To be completed");
-                            isInvalid = false;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     //This method retrieves data from the specified index of the csv file for the calculation methods to use
     public String[] getColumn(int columnIndex) {
         ArrayList<String> rows = getAllRows();
@@ -1098,5 +772,332 @@ public class Summary extends Data {
             newTotalVaccinated += Integer.parseInt(getColumn(6)[i]);
         }
         return newTotalVaccinated;
+    }
+
+    //These method prompts the user to choose between new total/up to result types for the new positive cases
+    public void newCases1() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("There are 2 different results types: ");
+        System.out.println("1. New Total");
+        System.out.println("2. Up to");
+        System.out.print("\nPlease select an option 1-2: ");
+        int resultOption = sc.nextInt();
+
+        switch (resultOption) {
+            case 1 -> {
+                System.out.println("****************************************************");
+                System.out.println("New Total Cases: " + newTotalCases1() + "\n");
+            }
+            case 2 -> System.out.println("To be completed ... Please choose case 1 :(");
+            default -> {
+                boolean isInvalid = true;
+                while (isInvalid) {
+                    System.out.print("Invalid selection! Please select an option 1-3: ");
+                    resultOption = sc.nextInt();
+
+                    switch (resultOption) {
+                        case 1 -> {
+                            System.out.println("****************************************************");
+                            System.out.println("New Total Cases: " + newTotalCases1() + "\n");
+                            isInvalid = false;
+                        }
+                        case 2 -> {
+                            System.out.println("To be completed ... Please choose case 1 :(");
+                            isInvalid = false;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void newCases2() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("There are 2 different results types: ");
+        System.out.println("1. New Total");
+        System.out.println("2. Up to");
+        System.out.print("\nPlease select an option 1-2: ");
+        int resultOption = sc.nextInt();
+
+        switch (resultOption) {
+            case 1 -> {
+                System.out.println("****************************************************");
+                System.out.println("New Total Cases: " + newTotalCases2() + "\n");
+            }
+            case 2 -> System.out.println("To be completed ... Please choose case 1 :(");
+            default -> {
+                boolean isInvalid = true;
+                while (isInvalid) {
+                    System.out.print("Invalid selection! Please select an option 1-3: ");
+                    resultOption = sc.nextInt();
+
+                    switch (resultOption) {
+                        case 1 -> {
+                            System.out.println("****************************************************");
+                            System.out.println("New Total Cases: " + newTotalCases1() + "\n");
+                            isInvalid = false;
+                        }
+                        case 2 -> {
+                            System.out.println("To be completed ... Please choose case 1 :(");
+                            isInvalid = false;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void newCases3() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("There are 2 different results types: ");
+        System.out.println("1. New Total");
+        System.out.println("2. Up to");
+        System.out.print("\nPlease select an option 1-2: ");
+        int resultOption = sc.nextInt();
+
+        switch (resultOption) {
+            case 1 -> {
+                System.out.println("****************************************************");
+                System.out.println("New Total Cases: " + newTotalCases3() + "\n");
+            }
+            case 2 -> System.out.println("To be completed ... Please choose case 1 :(");
+            default -> {
+                boolean isInvalid = true;
+                while (isInvalid) {
+                    System.out.print("Invalid selection! Please select an option 1-3: ");
+                    resultOption = sc.nextInt();
+
+                    switch (resultOption) {
+                        case 1 -> {
+                            System.out.println("****************************************************");
+                            System.out.println("New Total Cases: " + newTotalCases1() + "\n");
+                            isInvalid = false;
+                        }
+                        case 2 -> {
+                            System.out.println("To be completed ... Please choose case 1 :(");
+                            isInvalid = false;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //These method prompts the user to choose between new total/up to result types for the new deaths
+    public void newDeaths1() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("There are 2 different results types: ");
+        System.out.println("1. New Total");
+        System.out.println("2. Up to");
+        System.out.print("\nPlease select an option 1-2: ");
+        int resultOption = sc.nextInt();
+
+        switch (resultOption) {
+            case 1 -> {
+                System.out.println("****************************************************");
+                System.out.println("New Total Deaths: " + newTotalDeaths1() + "\n");
+            }
+            case 2 -> System.out.println("To be completed ... Please choose case 1 :(");
+            default -> {
+                boolean isInvalid = true;
+                while (isInvalid) {
+                    System.out.print("Invalid selection! Please select an option 1-3: ");
+                    resultOption = sc.nextInt();
+
+                    switch (resultOption) {
+                        case 1 -> {
+                            System.out.println("****************************************************");
+                            System.out.println("New Total Cases: " + newTotalCases1() + "\n");
+                            isInvalid = false;
+                        }
+                        case 2 -> {
+                            System.out.println("To be completed ... Please choose case 1 :(");
+                            isInvalid = false;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void newDeaths2() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("There are 2 different results types: ");
+        System.out.println("1. New Total");
+        System.out.println("2. Up to");
+        System.out.print("\nPlease select an option 1-2: ");
+        int resultOption = sc.nextInt();
+
+        switch (resultOption) {
+            case 1 -> {
+                System.out.println("****************************************************");
+                System.out.println("New Total Deaths: " + newTotalDeaths2() + "\n");
+            }
+            case 2 -> System.out.println("To be completed ... Please choose case 1 :(");
+            default -> {
+                boolean isInvalid = true;
+                while (isInvalid) {
+                    System.out.print("Invalid selection! Please select an option 1-3: ");
+                    resultOption = sc.nextInt();
+
+                    switch (resultOption) {
+                        case 1 -> {
+                            System.out.println("****************************************************");
+                            System.out.println("New Total Cases: " + newTotalCases1() + "\n");
+                            isInvalid = false;
+                        }
+                        case 2 -> {
+                            System.out.println("To be completed ... Please choose case 1 :(");
+                            isInvalid = false;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void newDeaths3() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("There are 2 different results types: ");
+        System.out.println("1. New Total");
+        System.out.println("2. Up to");
+        System.out.print("\nPlease select an option 1-2: ");
+        int resultOption = sc.nextInt();
+
+        switch (resultOption) {
+            case 1 -> {
+                System.out.println("****************************************************");
+                System.out.println("New Total Deaths: " + newTotalDeaths3() + "\n");
+            }
+            case 2 -> System.out.println("To be completed ... Please choose case 1 :(");
+            default -> {
+                boolean isInvalid = true;
+                while (isInvalid) {
+                    System.out.print("Invalid selection! Please select an option 1-3: ");
+                    resultOption = sc.nextInt();
+
+                    switch (resultOption) {
+                        case 1 -> {
+                            System.out.println("****************************************************");
+                            System.out.println("New Total Cases: " + newTotalCases1() + "\n");
+                            isInvalid = false;
+                        }
+                        case 2 -> {
+                            System.out.println("To be completed ... Please choose case 1 :(");
+                            isInvalid = false;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //These method prompts the user to choose between new total/up to result types for the new vaccinated people
+    public void newVaccinated1() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("There are 2 different results types: ");
+        System.out.println("1. New Total");
+        System.out.println("2. Up to");
+        System.out.print("\nPlease select an option 1-2: ");
+        int resultOption = sc.nextInt();
+
+        switch (resultOption) {
+            case 1 -> {
+                System.out.println("****************************************************");
+                System.out.println("New Total People Vaccinated: " + newTotalVaccinated1() + "\n");
+            }
+            case 2 -> System.out.println("To be completed ... Please choose case 1 :(");
+            default -> {
+                boolean isInvalid = true;
+                while (isInvalid) {
+                    System.out.print("Invalid selection! Please select an option 1-3: ");
+                    resultOption = sc.nextInt();
+
+                    switch (resultOption) {
+                        case 1 -> {
+                            System.out.println("****************************************************");
+                            System.out.println("New Total Cases: " + newTotalCases1() + "\n");
+                            isInvalid = false;
+                        }
+                        case 2 -> {
+                            System.out.println("To be completed ... Please choose case 1 :(");
+                            isInvalid = false;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void newVaccinated2() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("There are 2 different results types: ");
+        System.out.println("1. New Total");
+        System.out.println("2. Up to");
+        System.out.print("\nPlease select an option 1-2: ");
+        int resultOption = sc.nextInt();
+
+        switch (resultOption) {
+            case 1 -> {
+                System.out.println("****************************************************");
+                System.out.println("New Total People Vaccinated: " + newTotalVaccinated2() + "\n");
+            }
+            case 2 -> System.out.println("To be completed ... Please choose case 1 :(");
+            default -> {
+                boolean isInvalid = true;
+                while (isInvalid) {
+                    System.out.print("Invalid selection! Please select an option 1-3: ");
+                    resultOption = sc.nextInt();
+
+                    switch (resultOption) {
+                        case 1 -> {
+                            System.out.println("****************************************************");
+                            System.out.println("New Total Cases: " + newTotalCases1() + "\n");
+                            isInvalid = false;
+                        }
+                        case 2 -> {
+                            System.out.println("To be completed ... Please choose case 1 :(");
+                            isInvalid = false;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void newVaccinated3() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("There are 2 different results types: ");
+        System.out.println("1. New Total");
+        System.out.println("2. Up to");
+        System.out.print("\nPlease select an option 1-2: ");
+        int resultOption = sc.nextInt();
+
+        switch (resultOption) {
+            case 1 -> {
+                System.out.println("****************************************************");
+                System.out.println("New Total People Vaccinated: " + newTotalVaccinated3() + "\n");
+            }
+            case 2 -> System.out.println("To be completed ... Please choose case 1 :(");
+            default -> {
+                boolean isInvalid = true;
+                while (isInvalid) {
+                    System.out.print("Invalid selection! Please select an option 1-3: ");
+                    resultOption = sc.nextInt();
+
+                    switch (resultOption) {
+                        case 1 -> {
+                            System.out.println("****************************************************");
+                            System.out.println("New Total Cases: " + newTotalCases1() + "\n");
+                            isInvalid = false;
+                        }
+                        case 2 -> {
+                            System.out.println("To be completed ... Please choose case 1 :(");
+                            isInvalid = false;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
