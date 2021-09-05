@@ -7,7 +7,4 @@ Click this link to gain access to our Github: https://github.com/NhatKhanhGiang/
 Click this link to watch our presentation video: N/A
 
 Contribution information:
-+ Khánh: 25%
-+ Ân: 25%
-+ Nam: 25%
-+ Phúc: 25%
+- All contributions are the same
